@@ -1,0 +1,365 @@
+{
+    "defaultState": "vod",
+    "manager": "com/sesamtv/core/engine/RouteManager",
+    "routePattern": {
+        ":state/*": "stateRoute",
+        ":state/:action/:params?": "actionRoute"
+    },
+    "transitionMode": {
+        "default": "combine",
+        "chain": "transitionChain",
+        "combine": "transitionCombine"
+    },
+    "items": {
+        "vod": {
+            "scene": "vod",
+            "focus": {
+                "map": {
+                    "menu": [0, 0],
+                    "tvGrid": [0, 1]
+                },
+                "focus": "menu"
+            },
+            "routes": {
+                "home": {
+                    "topic": "plugins/menu/list"
+                },
+                "play": {
+                    "topic": "plugins/player/play",
+                    "params": {
+                        "type": "string"
+                    }
+                },
+                "detail": {
+                    "topic": "plugins/tvGrid/detail",
+                    "params": {
+                        "type": "string"
+                    }
+                }
+            },
+            "plugins": [
+                {
+                    "id": "menu",
+                    "plugin": "com/sesamtv/core/plugins/Menu",
+                    "config": {
+                        "root": ".vodMenu",
+                        "components": {
+                            "vodMenu": {
+                                "view": "text!com/sesamtv/core/plugins/menu/views/menu.html",
+                                "model": "com/sesamtv/core/plugins/menu/models/Menu",
+                                "namespace": "vod-menu",
+                                "placeAt": ""
+                            }
+                        },
+                        "inputEvents": {
+                            "keyboard": {
+                                "keydown": {
+                                    "UP_ARROW": {
+                                        "method": "goToPrevItem"
+                                    },
+                                    "DOWN_ARROW": {
+                                        "method": "goToNextItem"
+                                    },
+                                    "RIGHT_ARROW": {
+                                        "method": "handleToFocusManager"
+                                    },
+                                    "ENTER": {
+                                        "actions": [
+                                            {
+                                                "dispatchEvent": "unselected"
+                                            },
+                                            {
+                                                "publishTopic": "focusManager/focusMap",
+                                                "params": {
+                                                    "map": [0, 1]
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            "mouse": {
+                                "click": {
+                                    "$": {
+                                        "actions": [
+                                            {
+                                                "publishTopic": "plugin/tvGrid/unselect"
+                                            },
+                                            {
+                                                "publishTopic": "focusManager/focusMap",
+                                                "params": {
+                                                    "map": [0, 0]
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            "cordova": {
+                                "backbutton": {
+                                    "method": "exitApp"
+                                }
+                            }
+                        },
+                        "provider": {
+                            "store": "youtube",
+                            "url": "./youtube.json"
+                        }
+                    }
+                },
+                {
+                    "id": "tvGrid",
+                    "plugin": "com/sesamtv/core/plugins/TvGrid",
+                    "config": {
+                        "root": ".vodVideos",
+                        "chromecast":{
+                            "appId":"31a76198-2182-481a-a4a6-27d351872026_2"
+                        },
+                        "components": {
+                            "videos": {
+                                "view": "text!com/sesamtv/core/plugins/tvGrid/views/simpleTvGrid.html",
+                                "model": "com/sesamtv/core/plugins/tvGrid/models/Videos",
+                                "namespace": "vod-videos",
+                                "placeAt": ""
+                            },
+                            "detail": {
+                                "view": "text!com/sesamtv/core/plugins/tvGrid/views/detail.html",
+                                "model": "com/sesamtv/core/plugins/tvGrid/models/Detail",
+                                "namespace": "vod-detail",
+                                "placeAt": ""
+                            }
+                        },
+                        "mosaicParams": {
+                            "direction": "x",
+                            "autoStart": true,
+                            "itemSize": {
+                                "w": 320,
+                                "h": 180
+                            },
+                            "size": {
+                                "h": 562
+                            },
+                            "itemTemplate": "<div class=\"cellInner\" style=\"background-image:url(${thumbnail});\" ><div class=\"glass\"><figcaption class=\"cellTitle\">${title}</figcaption></div></div>"
+                        },
+                        "keyboardNavigation": {
+                            "defaultMap": "thumbnail",
+                            "stateTransitionTable": {
+                                "leftArrow": {
+                                    "selector": ".leftArrow .arrowInner",
+                                    "RIGHT_ARROW": "thumbnail",
+                                    "ENTER": "showPrevItemDetail"
+                                },
+                                "thumbnail": {
+                                    "selector": ".leftCol .preview",
+                                    "LEFT_ARROW": "leftArrow",
+                                    "RIGHT_ARROW": "options",
+                                    "DOWN_ARROW": "description",
+                                    "ENTER": "playVideo"
+                                },
+                                "options": {
+                                    "selector": ".options ul li:nth-child(1)",
+                                    "DOWN_ARROW": "options2",
+                                    "LEFT_ARROW": "thumbnail",
+                                    "RIGHT_ARROW": "suggestions",
+                                    "ENTER": ""
+                                },
+                                "options2": {
+                                    "selector": ".options ul li:nth-child(2)",
+                                    "UP_ARROW": "options",
+                                    "DOWN_ARROW": "options3",
+                                    "LEFT_ARROW": "thumbnail",
+                                    "RIGHT_ARROW": "suggestions",
+                                    "ENTER": ""
+                                },
+                                "options3": {
+                                    "selector": ".options ul li:nth-child(3)",
+                                    "UP_ARROW": "options2",
+                                    "DOWN_ARROW": "options4",
+                                    "LEFT_ARROW": "thumbnail",
+                                    "RIGHT_ARROW": "suggestions",
+                                    "ENTER": ""
+                                },
+                                "options4": {
+                                    "selector": ".options ul li:nth-child(4)",
+                                    "UP_ARROW": "options3",
+                                    "DOWN_ARROW": "rating",
+                                    "LEFT_ARROW": "thumbnail",
+                                    "RIGHT_ARROW": "suggestions",
+                                    "ENTER": ""
+                                },
+                                "rating": {
+                                    "selector": ".options .rating",
+                                    "UP_ARROW": "options4",
+                                    "LEFT_ARROW": "thumbnail",
+                                    "RIGHT_ARROW": "suggestions",
+                                    "DOWN_ARROW": "description",
+                                    "ENTER": "activeRating"
+                                },
+                                "suggestions": {
+                                    "selector": ".suggestions ul li:nth-child(1)",
+                                    "LEFT_ARROW": "options",
+                                    "RIGHT_ARROW": "rightArrow",
+                                    "DOWN_ARROW": "suggestions2"
+                                },
+                                "suggestions2": {
+                                    "selector": ".suggestions ul li:nth-child(2)",
+                                    "LEFT_ARROW": "options",
+                                    "RIGHT_ARROW": "rightArrow",
+                                    "UP_ARROW": "suggestions",
+                                    "DOWN_ARROW": "suggestions3"
+                                },
+                                "suggestions3": {
+                                    "selector": ".suggestions ul li:nth-child(3)",
+                                    "LEFT_ARROW": "options",
+                                    "RIGHT_ARROW": "rightArrow",
+                                    "UP_ARROW": "suggestions2",
+                                    "DOWN_ARROW": "suggestions4"
+                                },
+                                "suggestions4": {
+                                    "selector": ".suggestions ul li:nth-child(4)",
+                                    "LEFT_ARROW": "options",
+                                    "RIGHT_ARROW": "rightArrow",
+                                    "UP_ARROW": "suggestions3",
+                                    "DOWN_ARROW": "suggestions5"
+                                },
+                                "suggestions5": {
+                                    "selector": ".suggestions ul li:nth-child(5)",
+                                    "LEFT_ARROW": "options",
+                                    "RIGHT_ARROW": "rightArrow",
+                                    "UP_ARROW": "suggestions4",
+                                    "DOWN_ARROW": "home"
+                                },
+                                "description": {
+                                    "selector": ".desc",
+                                    "LEFT_ARROW": "leftArrow",
+                                    "RIGHT_ARROW": "suggestions",
+                                    "DOWN_ARROW": "home",
+                                    "UP_ARROW": "rating"
+                                },
+                                "rightArrow": {
+                                    "selector": ".rightArrow .arrowInner",
+                                    "LEFT_ARROW": "suggestions",
+                                    "DOWN_ARROW": "home",
+                                    "ENTER": "showNextItemDetail"
+                                },
+                                "home": {
+                                    "selector": ".footer .home",
+                                    "LEFT_ARROW": "leftArrow",
+                                    "RIGHT_ARROW": "rightArrow",
+                                    "UP_ARROW": "description",
+                                    "ENTER": "backToMosaic"
+                                }
+                            }
+                        },
+                        "inputEvents": {
+                            "keyboard": {
+                                "keydown": {
+                                    "UP_ARROW": {
+                                        "method": "goToAboveItem"
+                                    },
+                                    "DOWN_ARROW": {
+                                        "method": "goToBelowItem"
+                                    },
+                                    "LEFT_ARROW": {
+                                        "method": "goToLeftItem"
+                                    },
+                                    "RIGHT_ARROW": {
+                                        "method": "goToRightItem"
+                                    },
+                                    "ENTER": {
+                                        "method": "showVodDetail"
+                                    },
+                                    "ESCAPE": {
+                                        "actions": [
+                                            {
+                                                "publishTopic": "plugin/tvGrid/unselect"
+                                            },
+                                            {
+                                                "publishTopic": "focusManager/focusMap",
+                                                "params": {
+                                                    "map": [0, 0]
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                "vodDetail/keydown": {
+                                    "ESCAPE": {
+                                        "method": "backToMosaic"
+                                    }
+                                }
+                            },
+                            "mouse": {
+                                "click": {
+                                    "div:nth-child(2)": {
+                                        "actions": [
+                                            {
+                                                "publishTopic": "plugin/menu/unselect"
+                                            },
+                                            {
+                                                "publishTopic": "focusManager/focusMap",
+                                                "params": {
+                                                    "map": [0, 1]
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "id": "youtubePlayer",
+                    "plugin": "com/sesamtv/core/plugins/YoutubePlayer",
+                    "config": {
+                        "theme": "black",
+                        "playerId": "vodPlayer",
+                        "inputEvents": {
+                            "keyboard": {
+                                "keydown": {
+                                    "UP_ARROW": {
+                                        "method": "setVolumeBy",
+                                        "params": 5
+                                    },
+                                    "DOWN_ARROW": {
+                                        "method": "setVolumeBy",
+                                        "params": -5
+                                    },
+                                    "LEFT_ARROW": {
+                                        "method": "seekBy",
+                                        "params": -10
+                                    },
+                                    "RIGHT_ARROW": {
+                                        "method": "seekBy",
+                                        "params": 10
+                                    },
+                                    "ENTER": {
+                                        "method": "fullscreen"
+                                    },
+                                    "ESCAPE": {
+                                        "method": "destroyPlayer"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            ],
+            "events": {
+                "menu/selectItem": "tvGrid/show"
+            },
+            "defaultRoute": {
+                "route": "home",
+                "force": true,
+                "params": null
+            },
+            "transitionMode": "combine"
+
+        },
+        "mapa": {
+            "plugin": "com/sesamtv/core/plugins/TvGrid",
+            "transitionMode": "chain"
+        }
+    }
+}

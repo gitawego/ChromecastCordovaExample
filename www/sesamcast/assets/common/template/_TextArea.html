@@ -1,0 +1,19 @@
+<div class="textarea {%=(o.baseClass || '')%} {%=(o.theme || '')%}">
+{% if('label' in o && o.labelPosition==='before'){ %}
+<span class="label">{%=o.label%}</span>
+{%}%}
+<textarea
+    {% var keys = Object.keys(o.prop),i=0,l=keys.length; %}
+    {% for(;i< l;i++){ %}
+    {% if(keys[i] === 'value'){continue;} %}
+    {%#keys[i]%}="{%#o.prop[keys[i]]%}"
+    {% } %}
+>
+{% if('value' in o.prop){ %}
+    {%=o.prop.value%}
+{%}%}
+</textarea>
+{% if('label' in o && o.labelPosition==='after'){ %}
+<span class="label">{%=o.label%}</span>
+{%}%}
+</div>

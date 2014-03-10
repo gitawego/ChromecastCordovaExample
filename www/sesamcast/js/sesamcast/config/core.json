@@ -1,0 +1,14 @@
+{
+    "appName":"SesamTV Chromcast",
+    "version":"1.0.0",
+    "env":"development",
+    "appId":"sesamcast",
+    "mergeRequireConfig":["engine","plugins"],
+    "mergeSubConfig":["states","scenes","dataPolicy"],
+    "appRoutePattern":"/:appName",
+    "engine":"text!com/sesamtv/config/engine.json",
+    "plugins":"text!app/config/plugins.json",
+    "dataPolicy":"text!app/config/dataPolicy.json",
+    "scenes":"text!app/config/scenes.json",
+    "states":"text!app/config/states.json"
+}

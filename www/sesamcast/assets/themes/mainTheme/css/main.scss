@@ -1,0 +1,134 @@
+@import "./modules/vodMenu";
+@import "./modules/vodVideos";
+@import "./modules/vodDetail";
+@import "./modules/vodPlayer";
+
+.mainTheme {
+  font-size: 100%;
+  overflow: hidden;
+  background:#1B1B1B;
+
+  margin:0;
+  font-family: "Calibri", "Arial", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  .loader {
+    background:url(#{$assetsPath}/common/images/logo_bbox_vod.png) #1B1B1B center no-repeat;
+    @include transition(all 0.5s ease-in);
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    &.off{
+      opacity:0;
+    }
+  }
+}
+
+
+
+.hd{
+  background:url(#{$assetsPath}/common/images/picto_hd.png) no-repeat;
+  width:34px;
+  height:17px;
+  display:inline-block;
+}
+.sd{
+  background:url(#{$assetsPath}/common/images/picto_sd.png) no-repeat;
+  width:34px;
+  height:17px;
+  display:inline-block;
+}
+.vm{
+  background:url(#{$assetsPath}/common/images/picto_vm.png) no-repeat;
+  width:34px;
+  height:17px;
+  display:inline-block;
+}
+.ad{
+  background:url(#{$assetsPath}/common/images/picto_ad.png) no-repeat;
+  width:35px;
+  height:14px;
+  display:inline-block;
+}
+.vf{
+  background:url(#{$assetsPath}/common/images/picto_vf.png) no-repeat;
+  width:20px;
+  height:14px;
+  display:inline-block;
+}
+.csa {
+  background:url(#{$assetsPath}/common/images/picto_csa.png) no-repeat;
+  width:32px;
+  height:32px;
+  display:inline-block;
+  &.age12{
+    background-position: -32px 0;
+  }
+  &.age16{
+    background-position: -63px 0;
+  }
+  &.age18{
+    background-position: -96px 0;
+  }
+}
+
+.star {
+  background:url(#{$assetsPath}/common/images/picto_star.png) no-repeat;
+  width:16px;
+  height:15px;
+  &.on{
+    background-position: -16px 0;
+  }
+}
+
+.arrow {
+  background:url(#{$assetsPath}/common/images/arrow.png) no-repeat;
+  width:15px;
+  height:13px;
+  &.right{
+    background-position:-15px 0;
+  }
+}
+
+.mainTheme #container{
+  position: relative;
+  /*@include vendor-prefix(background,linear-gradient(top, rgba(26,26,26,1) 1%, rgba(60,60,60,1) 50%, rgba(26,26,26,1) 100%),right);*/
+  display: table;
+  /*height: 100%;*/
+  height:em(720);
+  /*background:url(#{$assetsPath}/common/images/bg.png) repeat-x;*/
+  width:100%;
+  > div{
+    position: absolute;
+    vertical-align: top;
+    @include transition(all 0.3s ease-in);
+    @include transform(translateZ(0));
+  }
+  .gridInner{
+    /*@include transform(translateZ(0));*/
+  }
+  @include vodMenu();
+  @include vodVideos();
+  @include vodDetail();
+  .simpleDataGrid .gridInner{
+    .item > div{
+      height: 90%;
+      width: 90%;
+      margin: 5% auto;
+      vertical-align: middle;
+      position: relative;
+    }
+
+  }
+
+}
+
+.mainTheme {
+  @include vodPlayer();
+}
+.mainTheme.stb #container .vodVideos figure.selected .cellInner{
+  @include transform(none);
+  @include transition(none);
+}

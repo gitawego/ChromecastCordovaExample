@@ -1,0 +1,78 @@
+.chromecast {
+  .cast-icon {
+    cursor: pointer;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 96px;
+    height: 100px;
+    &.disabled {
+      &.light {
+        background: url(#{$chromecastIconPath}/ic_media_route_disabled_holo_light.png);
+      }
+      &.dark {
+        background: url(#{$chromecastIconPath}/ic_media_route_disabled_holo_dark.png);
+      }
+    }
+    &.off {
+      &.light {
+        background: url(#{$chromecastIconPath}/ic_media_route_off_holo_light.png);
+      }
+      &.dark {
+        background: url(#{$chromecastIconPath}/ic_media_route_off_holo_dark.png);
+      }
+    }
+    &.on {
+      &.light {
+        background: url(#{$chromecastIconPath}/ic_media_route_on_holo_light.png);
+      }
+      &.dark {
+        background: url(#{$chromecastIconPath}/ic_media_route_on_holo_dark.png);
+      }
+    }
+    &.loading {
+      &.light {
+        @include vendor-prefix(animation, loadingLight 2s infinite);
+      }
+      &.dark {
+        @include vendor-prefix(animation, loadingDark 2s infinite);
+      }
+    }
+  }
+}
+
+@include keyframes(loadingLight) {
+  0% {
+    background: url(#{$chromecastIconPath}/ic_media_route_on_0_holo_light.png);
+  }
+  25% {
+    background: url(#{$chromecastIconPath}/ic_media_route_on_1_holo_light.png);
+  }
+  50% {
+    background: url(#{$chromecastIconPath}/ic_media_route_on_2_holo_light.png);
+  }
+  75% {
+    background: url(#{$chromecastIconPath}/ic_media_route_on_holo_light.png);
+  }
+  100% {
+    background: url(#{$chromecastIconPath}/ic_media_route_on_0_holo_light.png);
+  }
+}
+
+@include keyframes(loadingDark) {
+  0% {
+    background: url(#{$chromecastIconPath}/ic_media_route_on_0_holo_dark.png);
+  }
+  25% {
+    background: url(#{$chromecastIconPath}/ic_media_route_on_1_holo_dark.png);
+  }
+  50% {
+    background: url(#{$chromecastIconPath}/ic_media_route_on_2_holo_dark.png);
+  }
+  75% {
+    background: url(#{$chromecastIconPath}/ic_media_route_on_holo_dark.png);
+  }
+  100% {
+    background: url(#{$chromecastIconPath}/ic_media_route_on_0_holo_dark.png);
+  }
+}

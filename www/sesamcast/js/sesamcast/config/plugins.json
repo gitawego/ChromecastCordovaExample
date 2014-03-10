@@ -1,0 +1,108 @@
+{
+    "com/sesamtv/core/plugins/YoutubePlayer": {
+        "isEnabled": true,
+        "daemon": true,
+        "playerId":"youtubePlayer",
+        "topics":{
+            "plugins/youtubePlayer/attachEvent":{
+                "method":"attachEventViaTopic",
+                "mustLogin": true,
+                "mustHaveRight": false
+            },
+            "plugins/youtubePlayer/createPlayer":{
+                "method":"createPlayer",
+                "mustLogin": true,
+                "mustHaveRight": false
+            },
+            "plugins/youtubePlayer/destroyPlayer":{
+                "method":"destroyPlayer",
+                "mustLogin": true,
+                "mustHaveRight": false
+            },
+            "plugins/youtubePlayer/load":{
+                "method":"loadVideo",
+                "mustLogin": true,
+                "mustHaveRight": false
+            },
+            "plugins/youtubePlayer/play":{
+                "method":"playVideo",
+                "mustLogin": true,
+                "mustHaveRight": false
+            },
+            "plugins/youtubePlayer/pause":{
+                "method":"pauseVideo",
+                "mustLogin": true,
+                "mustHaveRight": false
+            },
+            "plugins/youtubePlayer/stop":{
+                "method":"stopVideo",
+                "mustLogin": true,
+                "mustHaveRight": false
+            },
+
+            "plugins/youtubePlayer/mute":{
+                "method":"muteVideo",
+                "mustLogin": true,
+                "mustHaveRight": false
+            },
+            "plugins/youtubePlayer/unmute":{
+                "method":"muteVideo",
+                "params":true,
+                "mustLogin": true,
+                "mustHaveRight": false
+            },
+            "plugins/youtubePlayer/volume":{
+                "method":"volume",
+                "mustLogin": true,
+                "mustHaveRight": false
+            }
+        }
+    },
+    "app/plugins/VideosBrowser": {
+        "isEnabled": true,
+        "components":{
+            "videos":{
+                "view":"text!app/plugins/videosbrowser/views/videos_list.html",
+                "model":"app/plugins/videosbrowser/models/VideosList",
+                "namespace":"cast-videos",
+                "placeAt":""
+            }
+        },
+        "topics":{
+            "plugins/videosBrowser/startup": {
+                "method": "startup",
+                "mustLogin": true,
+                "mustHaveRight": false
+            },
+            "plugins/videosBrowser/detail": {
+                "method": "buildDetail",
+                "mustLogin": true,
+                "mustHaveRight": false
+            },
+            "plugin/videosBrowser/unselect":{
+                "event":"unselected"
+            }
+        },
+        "inputEvents": {
+            "keyboard": {
+                "keydown": {
+                    "UP_ARROW": {
+                        "method": "goToAboveItem"
+                    },
+                    "DOWN_ARROW": {
+                        "method": "goToBelowItem"
+                    },
+                    "LEFT_ARROW": {
+                        "method": "goToLeftItem"
+                    },
+                    "RIGHT_ARROW": {
+                        "method": "goToRightItem"
+                    },
+                    "ENTER": {
+                        "method": "selectCurrentItem"
+                    }
+                }
+            }
+        }
+    }
+}

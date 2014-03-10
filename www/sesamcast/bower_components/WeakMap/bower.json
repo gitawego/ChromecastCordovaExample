@@ -1,0 +1,20 @@
+{
+  "name": "WeakMap",
+  "main": "weakmap.js",
+  "homepage": "https://github.com/gitawego/WeakMap",
+  "authors": [
+    "Hongbo LU",
+    "The Polymer Authors"
+  ],
+  "description": "polyfill for ES6 WeakMap",
+  "keywords": [
+    "weakmap"
+  ],
+  "license": "BSD",
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

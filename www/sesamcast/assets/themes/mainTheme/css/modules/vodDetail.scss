@@ -1,0 +1,222 @@
+@mixin vodDetail() {
+  .vodDetail {
+    left: 0;
+    width: 98%;
+    min-height: 100%;
+    max-height:100%;
+    padding: 20px 0 0 20px;
+    background: #1F1F1F;
+    z-index: 1;
+    color: #fff;
+
+    @include rating();
+    .detailInner {
+      display: table;
+      /*background: #343434;*/
+      width: 98.5%;
+      height: auto;
+      margin:0 auto;
+      > div {
+        display: table-cell;
+        background: #343434;
+      }
+      .leftArrow{
+        margin-left:3%;
+      }
+      .leftArrow,
+      .rightArrow {
+        width: 3%;
+        /*height: 100%;*/
+        vertical-align: middle;
+        background: #1F1F1F;
+        font-weight: 700;
+        text-align: center;
+
+        .arrowInner {
+          cursor: pointer;
+          background: #343434;
+          padding: em(6);
+          border:2px solid transparent;
+          @include vendor-prefix(box-sizing,border-box);
+          &.kbn-focused{
+            border-color:rgba(137, 176, 32, 1);
+          }
+          hr {
+            width: 30%;
+          }
+          .arrow {
+            margin: auto;
+          }
+        }
+      }
+      .leftCol {
+        width: 75%;
+        vertical-align: top;
+        padding: 0 0.5%;
+        > * {
+          display: inline-block;
+        }
+        .header {
+          width: 100%;
+          padding: 5px 0 0 0;
+          .title {
+            display: inline-block;
+            vertical-align: top;
+            font-size: em(29);
+            margin-right: em(5);
+            /*white-space: nowrap;*/
+            overflow: hidden;
+            max-width: 90%;
+          }
+        }
+        > .preview {
+          @include vendor-prefix(box-sizing, border-box);
+          width: 65%;
+          height: em(323);
+          background: url(#{$assetsPath}/common/images/visuel_default.jpg) no-repeat;
+          background-size: contain;
+          background-position: center;
+          border: 2px solid transparent;
+          &.selected,
+          &.kbn-focused{
+            border-color: rgba(137, 176, 32, 1);
+          }
+        }
+        .options {
+          width: 33%;
+          height: em(323);
+          vertical-align: top;
+          background: #545454;
+          .rating {
+            text-align: center;
+            border:2px solid transparent;
+            @include vendor-prefix(box-sizing,border-box);
+            &.kbn-focused{
+              border-color:rgba(137, 176, 32, 1);
+            }
+          }
+          ul {
+            list-style: none;
+            margin: 40px 0 10px 0;
+            padding: 0;
+            @include vendor-prefix(box-sizing,border-box);
+
+            li {
+              margin: 5px;
+              font-weight: 700;
+              background: #2F2F2F;
+              padding: 3px 0 0 10px;
+              text-align: center;
+              cursor: pointer;
+              @include vendor-prefix(border-radius, 5px);
+              border:2px solid transparent;
+              &.kbn-focused {
+                border-color:rgba(137, 176, 32, 1) !important;
+              }
+            }
+          }
+        }
+        .info {
+          width: 30%;
+          border-right: 2px solid #808080;
+          margin: auto auto 20px auto;
+          > div > span {
+            margin: auto 5px;
+          }
+          .allocine {
+            background: url(#{$assetsPath}/common/images/logo_allocine.png) no-repeat;
+            width: 90px;
+            height: 24px;
+          }
+        }
+        .intro {
+          width: 69%;
+          vertical-align: top;
+          .price {
+            text-align: right;
+            color: #FFCD00;
+            font-weight: 700;
+          }
+          .desc{
+            border:2px solid transparent;
+            font-size:1.3em;
+            @include vendor-prefix(box-sizing,border-box);
+            overflow-y: auto;
+            &.kbn-focused{
+              border-color:rgba(137, 176, 32, 1);
+            }
+          }
+        }
+      }
+      .casting {
+        vertical-align: top;
+        width: 10%;
+        .title {
+          padding: 8px;
+          font-weight: 700;
+        }
+      }
+      .suggestions {
+        vertical-align: top;
+        width: 9%;
+        /*height: 100%;*/
+        background: #8C8C8C;
+
+        @include vendor-prefix(box-sizing,border-box);
+        ul {
+          list-style: none;
+          margin:0;
+          padding:0;
+          li {
+            text-align: center;
+            &.kbn-focused{
+              img {
+                border-color: rgb(188, 215, 62);
+              }
+            }
+          }
+          img {
+            width:90%;
+            border:3px solid transparent;
+            @include transition(all 0.3s ease-out);
+          }
+        }
+        &.kbn-focused{
+          border-color:rgba(137, 176, 32, 1);
+        }
+        .title {
+          padding: 8px;
+          font-weight: 700;
+        }
+      }
+    }
+    .footer {
+      width: 100%;
+      > div {
+        display: inline-block;
+      }
+      .logo {
+        background: url(#{$assetsPath}/common/images/logo_bbox_vod_m.png) no-repeat;
+        width: 146px;
+        height: 50px;
+        vertical-align: bottom;
+        float: right;
+        margin-right: 4%;
+      }
+      .home {
+        cursor: pointer;
+        background: url(#{$assetsPath}/common/images/icon_home.png) no-repeat;
+        padding-left: 25px;
+        font-weight: 700;
+        margin-top: 10px;
+        margin-left:4%;
+        vertical-align: middle;
+        &.kbn-focused{
+          color:rgba(137, 176, 32, 1);
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+}

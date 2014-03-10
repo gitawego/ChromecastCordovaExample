@@ -1,0 +1,33 @@
+{
+    "manager":"com/sesamtv/core/engine/RenderingEngine",
+    "layout":{
+
+    },
+    "items":{
+        "vod": {
+            "root": "#container",
+            "enterAnim": {
+                "type":"fadeIn",
+                "mode":"chain",
+                "order":["player","vod"]
+            },
+            "exitAnim": "fadeOut",
+            "layout":{
+                "Vod":{
+                    "cls":"row-fluid",
+                    "tag":"div",
+                    "children":{
+                        "TVGrid":{
+                            "cls":"span1",
+                            "tag":"div"
+                        }
+                    }
+                }
+            }
+        },
+        "mapa": {
+            "root": "#container",
+            "enterAnim": "easeIn"
+        }
+    }
+}

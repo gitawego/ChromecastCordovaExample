@@ -1,0 +1,269 @@
+$useIEFilters: 0 !default;
+$vendorPrefix: (-moz-,-o-,-ms-,-webkit-,'') !default;
+// might be 0 or 1. disabled by default.
+// ---- /LEGACY IE SUPPORT USING FILTERS ----
+
+
+@mixin vendor-prefix($name, $value, $pos: left) {
+  @each $vendor in $vendorPrefix {
+    @if $pos == left{
+      #{$vendor}#{$name}: #{$value};
+    } @else if $pos == right{
+      #{$name}: #{$vendor}#{$value};
+    } @else if $pos == both{
+      #{$vendor}#{$name}: #{$vendor}#{$value};
+    }
+  }
+}
+
+@mixin breakpoint($breakpoint, $media: all, $base: $baseFontSize, $map:(small 453, medium 640, ipad-landscap 768, xmedium 920,large 1024, xlarge 1280)) {
+  @each $item in $map {
+    $key: nth($item, 1);
+    $value: nth($item, 2);
+    @if($breakpoint == $key){
+      @media only #{$media} and (min-width: #{$value/$base*1em}) {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin opacity($value, $ie:$useIEFilters){
+  @if $useIEFilters != 0 {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$value*100})";
+    filter: alpha(opacity=#{$value*100});
+  }
+  opacity:$value;
+}
+
+@mixin fontOpacity($hex:#000,$alpha:1){
+  color:$hex;
+  color:rgba($hex,$alpha);
+}
+
+@mixin background-gradient($startColor: #3C3C3C, $endColor: #999999, $ie: $useIEFilters){
+  background-color: $startColor;
+  @include vendor-prefix(background-image,linear-gradient(top, $startColor, $endColor),right);
+  @if $ie == 1{
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=$startColor, EndColorStr=$endColor);
+  }
+}
+
+
+@mixin background-size($value){
+  @include vendor-prefix(background-size,$value);
+}
+
+@mixin border-image($path, $offsets, $repeats){
+  @include vendor-prefix(border-image,$path $offsets $repeats);
+}
+
+@mixin background-clip($value){
+  @include vendor-prefix(background-clip,$value);
+}
+
+@mixin border-radius($values) {
+  @if length($values) != 1{
+    @each $prefix in $vendorPrefix {
+      $i: 1;
+      @each $position in (top-left, top-right, bottom-right, bottom-left) {
+        @include vendor-prefix(border-#{$position}-radius,nth($values, $i));
+        $i: $i+1;
+      }
+    }
+  } @else {
+    @include vendor-prefix(border-radius,$values);
+  }
+  @include background-clip('padding-box');
+}
+
+@mixin outline-radius($radius: 5px){
+  @include vendor-prefix(outline-radius,$radius);
+}
+
+@mixin box($orient: horizontal, $pack: center, $align: center){
+  @include vendor-prefix(display,box,right);
+  @include vendor-prefix(box-orient,$orient);
+  @include vendor-prefix(box-pack,$pack);
+  @include vendor-prefix(box-align,$align);
+}
+
+
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+  @if $inset {
+    @include vendor-prefix(box-shadow,inset $top $left $blur $color);
+  } @else {
+    @include vendor-prefix(box-shadow,$top $left $blur $color);
+  }
+}
+
+@mixin marquee(){
+  overflow: hidden;
+  overflow-x:-webkit-marquee;
+  @include vendor-prefix(marquee-direction,forwards);
+  @include vendor-prefix(marquee-style,scroll);
+  @include vendor-prefix(marquee-speed,normal);
+  @include vendor-prefix(marquee-increment,small);
+  -webkit-marquee-direction: forwards;
+  -webkit-marquee-style: scroll;
+  -webkit-marquee-speed: normal;
+  -webkit-marquee-increment: small;
+  -webkit-marquee-repetition: 5;
+  overflow-x: marquee-line;
+  marquee-direction: forward;
+  marquee-style: scroll;
+  marquee-speed: normal;
+  marquee-play-count: 5;
+}
+
+@mixin box-sizing($value){
+  @include vendor-prefix(box-sizing,$value);
+}
+
+@mixin flex($value:1){
+  @include vendor-prefix(box-flex,$value);
+}
+
+@mixin columns($attr){
+  @each $item in $attr {
+    $key: nth($item, 1);
+    $value: nth($item, 2);
+    @if($value != null){
+      @include vendor-prefix(column-#{$key},$value);
+    }
+  }
+}
+
+/* requires sass 3.2 */
+@mixin keyframes($name){
+  @each $prefix in $vendorPrefix{
+    @if $prefix == '-moz-'{
+      @-moz-keyframes #{$name} {
+        @content;
+      }
+    }
+    @if $prefix == '-webkit-'{
+      @-webkit-keyframes #{$name} {
+        @content;
+      }
+    }
+    @if $prefix == '-ms-'{
+      @-ms-keyframes #{$name} {
+        @content;
+      }
+    }
+    @if $prefix == '-o-'{
+      @-o-keyframes #{$name} {
+        @content;
+      }
+    }
+    @if $prefix == ''{
+      @keyframes #{$name} {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin animation($animation, $duration, $animType:ease, $iteration:null, $delay:null, $mode: null, $playState: null){
+  @include vendor-prefix(animation-name,$animation);
+  @include vendor-prefix(animation-duration,$duration);
+  @include vendor-prefix(animation-timing-function,$animType);
+  @if $iteration != null{
+    @include vendor-prefix(animation-iteration-count,$iteration);
+  }
+  @if $delay != null{
+    @include vendor-prefix(animation-delay,$delay);
+  }
+  @if $mode != null{
+    @include vendor-prefix(animation-fill-mode,$mode);
+  }
+  @if $playState != null{
+    @include vendor-prefix(animation-play-state,$playState);
+  }
+
+}
+
+@mixin linear-gradient($from, $to, $ie: $useIEFilters){
+  @if $ie != 1{
+    background-color: $to;
+  }
+
+  @include vendor-prefix(background-image,gradient(linear, left top, left bottom, color-stop(0, $from), color-stop(1, $to)),right);
+  @include vendor-prefix(background-image,linear-gradient(top, $from, $to),right);
+
+  @if $ie == 1{
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=' #{$from} ', endColorstr=' #{$to} ');
+    -ms-filter: "quote(progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$from}', endColorstr='#{$to}'))";
+  }
+}
+
+@mixin rgba-bg($hex, $alpha, $ie: $useIEFilters){
+  background-color: $hex;
+  background-color: rgba($hex, $alpha);
+  @if $ie == 1{
+    background-color: none;
+    $hexopac: ie-hex-str(rgba($hex, $alpha));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=' #{$hexopac} ', EndColorStr=' #{$hexopac} }');
+    -ms-filter: "quote(progid:DXImageTransform.Microsoft.gradient(startColorStr='#{$hexopac}',EndColorStr='#{$hexopac}'))";
+  }
+}
+
+@mixin transform-style($value){
+  @include vendor-prefix(transform-style,$value);
+}
+
+@mixin perspective($perspective){
+  @include vendor-prefix(perspective,$perspective);
+  @include transform-style('preserve-3d');
+}
+
+@mixin transform($transforms){
+  @include vendor-prefix(transform,$transforms);
+}
+
+@mixin transform-origin($direction){
+  @include vendor-prefix(transform-origin,$direction);
+}
+
+@mixin matrix($a, $b, $c, $d, $e, $f){
+  @each $prefix in $vendorPrefix{
+    @if $prefix == -moz-{
+      -moz-transform: matrix($a, $b, $c, $d, #{$e}px, #{$f}px);
+    }@else{
+      #{$prefix}transform: matrix($a, $b, $c, $d, $e, $f);
+    }
+  }
+}
+
+@mixin rotate($deg){
+  @include transform(rotate(#{$deg}deg));
+}
+
+@mixin scale($size){
+  @include transform(scale(#{$size}));
+}
+
+@mixin translate($x, $y){
+  @include transform(translate($x, $y));
+}
+
+@mixin transition($value){
+  @include vendor-prefix(transition,$value);
+}
+
+@mixin user-select($value){
+  @include vendor-prefix(user-select,$value);
+}
+
+@mixin glass($borderRadius:10px 10px 2px 2px,$borderSize:1px,$borderColor:rgba(0,0,0,0.5)){
+
+  border: $borderSize solid $borderColor;
+  border-radius: $borderRadius;
+  background: rgba(0,0,0,0.25);
+  @include vendor-prefix(box-shadow,"0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3)");
+
+}
+
+
+    // ==== /CSS3 SCSS MIXINS ====

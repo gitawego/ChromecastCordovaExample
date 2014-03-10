@@ -1,0 +1,29 @@
+{
+  "name": "WeakMap",
+  "main": "weakmap.js",
+  "homepage": "https://github.com/gitawego/WeakMap",
+  "authors": [
+    "Hongbo LU",
+    "The Polymer Authors"
+  ],
+  "description": "polyfill for ES6 WeakMap",
+  "keywords": [
+    "weakmap"
+  ],
+  "license": "BSD",
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "826e872929",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "826e872929df51e26b67b5a804dc484ac3614c62"
+  },
+  "_source": "git://github.com/gitawego/WeakMap.git",
+  "_target": "master",
+  "_originalSource": "gitawego/WeakMap"
+}

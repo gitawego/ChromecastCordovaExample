@@ -1,0 +1,13 @@
+{
+  "name": "classList.js",
+  "homepage": "https://github.com/eligrey/classList.js",
+  "_release": "385edbd950",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "385edbd950c8ff75abe49db1b1171da58204877a"
+  },
+  "_source": "git://github.com/eligrey/classList.js.git",
+  "_target": "master",
+  "_originalSource": "eligrey/classList.js"
+}

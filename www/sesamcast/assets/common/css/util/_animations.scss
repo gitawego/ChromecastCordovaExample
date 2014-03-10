@@ -1,0 +1,126 @@
+@import '_pageTransitions';
+@import '_spinner.scss';
+
+@include keyframes(panelclose) {
+  from {
+    @include transform(perspective(150) rotateY(0deg));
+    @include transform-origin(right);
+  }
+  to {
+    @include transform(perspective(150) rotateY(-90deg));
+    @include transform-origin(right);
+  }
+}
+
+@include keyframes(byebye){
+  from {
+    @include transform(perspective(350) rotateY(0deg));
+    @include transform-origin(center);
+  }
+  to {
+    @include transform(perspective(350) rotateY(-90deg));
+    @include transform-origin(center);
+  }
+}
+
+@include keyframes(panelopen){
+  from {
+    @include transform(perspective(150) rotateY(0deg));
+    @include transform-origin(left);
+  }
+  to {
+    @include transform(perspective(150) rotateY(-90deg));
+    @include transform-origin(left);
+  }
+}
+
+@include keyframes(fadeIn){
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+
+}
+
+@include keyframes(fadeOut){
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+
+
+*[data-stb-cmp-animation=openleft] {
+  @include animation(panelopen,1000ms,ease,3);
+  @include transform(rotateY(0deg));
+}
+
+*[data-stb-cmp-animation=closeright] {
+  @include animation(panelclose,300ms,ease,1);
+  @include transform(rotateY(-90deg));
+}
+
+*[data-stb-cmp-animation=byebye] {
+  @include animation(byebye,400ms,ease,1);
+  @include transform(rotateY(-90deg));
+}
+
+*[data-stb-cmp-animation=fadeOut] {
+  @include animation(fadeOut,300ms,ease,1);
+  opacity: 0;
+}
+
+*[data-stb-cmp-animation=fadeIn] {
+  @include animation(fadeIn,300ms,ease,1);
+  opacity: 1;
+}
+
+/*** general rules for open menu animation ***/
+
+.openMenuAnim {
+  @include perspective(640px);
+}
+
+.openMenuAnim .openMenuAnimInner {
+  @include transform-origin(left);
+  @include transform(rotateY(0deg));
+  height: 100%;
+}
+
+.openMenuAnim.noTransition .openMenuAnimInner {
+  @include transition(none !important);
+}
+
+.openMenuAnim.left .openMenuAnimInner {
+  @include transform-origin(right);
+}
+
+.openMenuAnim.left.closed,
+.openMenuAnim.right.closed {
+    width: 0 !important;
+    overflow: hidden;
+    /*visibility: hidden;*/
+}
+
+.openMenuAnim.right.closed .openMenuAnimInner {
+  @include transform(rotateY(95deg));
+}
+
+.openMenuAnim.left.closed .openMenuAnimInner {
+  @include transform(rotateY(-95deg));
+}
+
+.openMenuAnim.showAnim {
+  @include transition(all 250ms ease-out);
+}
+
+.openMenuAnim.showAnim .openMenuAnimInner {
+    /*-webkit-transition:  -webkit-transform 250ms ease-out,width 250ms ease-out;*/
+  @include transition(all 250ms ease-out);
+}
+

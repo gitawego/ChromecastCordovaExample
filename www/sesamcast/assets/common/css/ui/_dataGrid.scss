@@ -1,0 +1,215 @@
+/***********************/
+/*********Core**********/
+/***********************/
+.dataGrid {
+    overflow: hidden;
+    position: relative;
+}
+
+.dataGrid .viewPanel {
+    position: relative;
+}
+
+.dataGrid.doubleViewPanels .viewPanel {
+    position: absolute;
+}
+
+.dataGrid .preparing {
+    visibility: hidden;
+}
+
+.dataGrid .group {
+    /*stb prefers position absolute than float:left or display:inline-block*/
+    position: absolute;
+}
+
+.dataGrid .cell {
+    /*reserved*/
+
+}
+
+.dataGrid.singleViewPanel .cell {
+    position: absolute;
+}
+
+.dataGrid .cellTitle {
+    position: relative;
+}
+
+.dataGrid .cell * {
+    margin: 0;
+    padding: 0;
+    background-size: 100% auto;
+}
+
+.dataGrid .cell .cellInner {
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+}
+
+.dataGrid .selected {
+    /*reserved*/
+}
+.dataGrid aside{
+    -webkit-perspective: 640px;
+}
+.dataGrid aside .innerAside{
+    -webkit-transform-origin: left;
+    -webkit-transform: rotateY(0deg);
+    height: 100%;
+}
+
+.dataGrid aside.noTransition .innerAside{
+    -webkit-transition:none !important;
+}
+
+.dataGrid aside.left .innerAside{
+    -webkit-transform-origin: right;
+}
+
+.dataGrid aside.right.closed .innerAside{
+    -webkit-transform: rotateY(95deg);
+}
+
+.dataGrid aside.left.closed .innerAside{
+    -webkit-transform: rotateY(-95deg);
+}
+
+.dataGrid.showAside aside{
+    /*-webkit-transition:  -webkit-transform 250ms ease-out,width 250ms ease-out;*/
+    -webkit-transition:  all 250ms ease-out;
+}
+
+.dataGrid.showAside .group{
+    /*-webkit-transition:  -webkit-transform 250ms ease-out;*/
+    -webkit-transition:  all 250ms ease-out;
+}
+
+.dataGrid.showAside aside .innerAside{
+    /*-webkit-transition:  -webkit-transform 250ms ease-out,width 250ms ease-out;*/
+    -webkit-transition:  all 250ms ease-out;
+}
+
+/**********************************/
+/*********Default Setting**********/
+/**********************************/
+.dataGrid {
+    width: 855px;
+    height: 600px;
+}
+.dataGrid .group {
+    color: rgba(255, 255, 255, 0.6);
+    border: solid transparent;
+    height: auto;
+    width: 200px;
+    margin: auto 2px;
+}
+.dataGrid aside .innerAside{
+    background:red;
+}
+
+.dataGrid .cellTitle {
+    top: 72%;
+    left: 2%;
+    color: #fff;
+}
+
+.dataGrid .selected {
+    border: #fff 2px solid;
+}
+
+.dataGrid .cell {
+    width: auto;
+    height: 150px;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: rgba(255, 255, 255, 0.6);
+    margin: 2px auto;
+    font-size: 12px;
+}
+
+
+.dataGrid.y .group:nth-child(1) {
+    -webkit-transform: translateX(0) translateZ(0);
+}
+
+.dataGrid.y .group:nth-child(2) {
+    -webkit-transform: translateX(210px) translateZ(0);
+}
+
+.dataGrid.y .group:nth-child(3) {
+    -webkit-transform: translateX(420px) translateZ(0);
+}
+
+.dataGrid.y .group:nth-child(4) {
+    -webkit-transform: translateX(630px) translateZ(0);
+}
+
+
+
+/*.dataGrid.y .group:nth-child(1) {
+    -webkit-transform: translateX(0) translateZ(0);
+}
+
+.dataGrid.y .group:nth-child(2) {
+    -webkit-transform: translateX(210px) translateZ(0);
+}
+
+.dataGrid.y .group:nth-child(3) {
+    -webkit-transform: translateX(420px) translateZ(0);
+}
+
+.dataGrid.y .group:nth-child(4) {
+    -webkit-transform: translateX(630px) translateZ(0);
+}*/
+
+/*.dataGrid.y .group:nth-child(1) {
+    -webkit-transform: translate3d(0,0,0);
+}
+
+.dataGrid.y .group:nth-child(2) {
+    -webkit-transform: translate3d(210px,0,0);
+}
+
+.dataGrid.y .group:nth-child(3) {
+    -webkit-transform: translate3d(420px,0,0);
+}
+
+.dataGrid.y .group:nth-child(4) {
+    -webkit-transform: translate3d(630px,0,0);
+}*/
+
+/*small to medium devices*/
+@media (min-width:360px) and (max-width:720px) and (orientation:portrait) {
+    /*in this screen size, there are only 2 groups*/
+    .dataGrid{
+        min-width:290px;
+    }
+    .dataGrid .group {
+        width: 120px;
+    }
+    .dataGrid .cell {
+        height: 140px;
+        margin: 10px auto;
+    }
+   /* .dataGrid .selected {
+        border: inherit;
+    }*/
+    .dataGrid.y .group:nth-child(1) {
+        -webkit-transform: translateX(0) translateZ(0);
+    }
+
+    .dataGrid.y .group:nth-child(2) {
+        -webkit-transform: translateX(140px) translateZ(0);
+    }
+
+    .dataGrid.y .group:nth-child(3) {
+        -webkit-transform: translateX(280px) translateZ(0);
+    }
+
+    .dataGrid.y .group:nth-child(4) {
+        -webkit-transform: translateX(420px) translateZ(0);
+
+    }
+}

@@ -1,0 +1,44 @@
+.caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  border-top: 4px solid #000000;
+  border-right: 4px solid transparent;
+  border-bottom: 0 dotted;
+  border-left: 4px solid transparent;
+  content: "";
+}
+
+.icon-watch-gray-like {
+  top: -1px;
+  background: no-repeat url(#{$assetsPath}/common/images/icon_sprites.webp) -67px 0;
+  background-size: auto;
+  width: 13px;
+  height: 14px;
+}
+
+.icon-watch-gray-dislike {
+  background: no-repeat url(#{$assetsPath}/common/images/icon_sprites.webp) 0 -635px;
+  background-size: auto;
+  width: 13px;
+  height: 14px;
+}
+
+
+.icon-watch-like {
+  top: -1px;
+  background: no-repeat url(#{$assetsPath}/common/images/icon_sprites.webp) 0px -17px;
+  background-size: auto;
+  width: 19px;
+  height: 15px;
+}
+
+.icon-watch-dislike {
+  background: no-repeat url(#{$assetsPath}/common/images/icon_sprites.webp) -14px -261px;
+  background-size: auto;
+  width: 19px;
+  height: 15px;
+}
+

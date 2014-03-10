@@ -1,0 +1,61 @@
+@mixin rating($fontSize:20px,$width:1.1em,$colorOff:black,$colorOn:gold){
+  /*.rating {
+    font-size:$fontSize;
+    > span {
+      display: inline-block;
+      position: relative;
+      width: $width;
+    }
+    &:hover > span,
+    &.rated > span {
+      color: transparent;
+    }
+    > span:hover ~ span,
+    > span.rated ~ span {
+      color: $colorOff;
+    }
+    &:hover > span:before,
+    &.rated > span:before {
+      content: "\2605";
+      position: absolute;
+      left: 0;
+      color: $colorOn;
+    }
+    > span:hover ~ span:before,
+    > span.rated ~ span:before {
+      color: transparent;
+    }
+  }*/
+  .rating {
+    font-size:$fontSize;
+    > span {
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      background:url(#{$assetsPath}/common/images/picto_star.png) no-repeat;
+      width:16px;
+      height:15px;
+      /*text-indent: -9999px;*/
+    }
+
+
+    &.rated {
+      > span{
+        background-position: -16px 0;
+        &.rated ~ span{
+          background-position: 0px 0;
+        }
+      }
+    }
+
+    &:hover{
+      > span{
+        background-position: -16px 0;
+        &:hover ~ span{
+          background-position: 0px 0;
+        }
+      }
+    }
+
+  }
+}

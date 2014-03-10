@@ -1,0 +1,8 @@
+.box.vbox .inner > * {
+  display: block;
+}
+
+.box.hbox .inner > * {
+  display: block;
+  float: left;
+}

@@ -1,0 +1,125 @@
+@mixin vodVideos() {
+  .vodVideos {
+    width: 98%;
+    /*left:20%;*/
+    @include transform(translate3d(24%, 0, 0));
+    overflow: hidden;
+    padding: 20px 0 0 20px;
+    &.selected {
+      .footer .pagination {
+        visibility: visible;
+      }
+      @include transform(translate3d(0, 0, 0));
+      /* left:0;*/
+      /*width:98%;*/
+    }
+    .header {
+      .title {
+        color: #fff;
+        font-size: em(20);
+        text-transform: uppercase;
+        margin: 10px;
+      }
+    }
+    figure {
+      /*      margin:em(10);
+            width:em(206);
+            height:em(274);*/
+
+      display: inline-block;
+      vertical-align: top;
+      border: none;
+      @include transform(translateZ(0));
+      > div {
+        background-image: url(#{$assetsPath}/common/images/loading-default.jpg);
+        background-size: cover;
+        background-position: center;
+        /*border:3px solid rgba(60,60,60,1);
+        @include border-radius(2px);*/
+      }
+      .cellInner {
+        /*@include vendor-prefix(transform-style,preserve-3d);*/
+        @include vendor-prefix(transition, transform 0.5s, 'both');
+        /*@include transform(scale(1));*/
+        position: relative;
+        .glass {
+          border: 2px solid transparent;
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          padding: 0;
+        }
+
+      }
+      &.loaded {
+        > div {
+          background-image: none;
+        }
+      }
+      &.selected {
+        > div {
+          /*border:3px solid rgba(137,176,32,1);*/
+        }
+        .cellInner {
+          /*@include vendor-prefix(transform,rotateY(180deg));*/
+          /*@include vendor-prefix(box-shadow,4px 4px 5px 0px rgba(54, 54, 54, 0.75));*/
+          /*@include transform(scale(1.1));*/
+          .glass {
+            border-color: rgba(137, 176, 32, 1);
+            @include vendor-prefix(border-radius, 2px);
+            /*@include glass(3px,2px,rgba(137,176,32,1));*/
+          }
+
+        }
+        .cellTitle {
+          visibility: visible;
+        }
+      }
+      .cellTitle {
+        visibility: hidden;
+        position: absolute;
+        bottom: 0;
+        padding: em(4);
+        font-weight: 700;
+        background: rgba(255, 255, 255, 0.8);
+        color: #022F3A;
+        width: 98%;
+      }
+
+    }
+    .footer {
+      color: #fff;
+      .home {
+        background: url(#{$assetsPath}/common/images/icon_home.png) no-repeat;
+        padding-left: 25px;
+        font-weight: 700;
+        width: 44%;
+        margin-left: 1%;
+        cursor: pointer;
+      }
+      .pagination {
+        visibility: hidden;
+        > span {
+          display: inline-block;
+        }
+
+      }
+      .logo {
+        width: 146px;
+        height: 50px;
+        background: url(#{$assetsPath}/common/images/logo_bbox_vod_m.png) no-repeat;
+        float: right;
+      }
+      > div {
+        display: inline-block;
+      }
+    }
+    > div {
+      /*      @include columns((width em(206),gap 0,fill auto));
+            height: em(274*2+40);*/
+    }
+    .footer {
+      height: em(87);
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+    "appName":"SesamTV VOD",
+    "version":"1.0.0",
+    "env":"development",
+    "appId":"sesamvod",
+    "mergeRequireConfig":["engine","plugins"],
+    "mergeSubConfig":["states","scenes","dataPolicy","keyCodeMap as maps"],
+    "appRoutePattern":"/:appName",
+    "engine":"text!com/sesamtv/config/engine.json",
+    "plugins":"text!app/config/plugins.json",
+    "dataPolicy":"text!app/config/dataPolicy.json",
+    "keyCodeMap":"text!app/config/keyCodeMap.json",
+    "scenes":"text!app/config/scenes.json",
+    "states":"text!app/config/states.json"
+}

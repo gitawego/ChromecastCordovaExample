@@ -1,0 +1,26 @@
+$assetsPath: '../..';
+$themePath:"../../themes";
+/*
+  #v5
+  to dynamically include image path:
+      background:url('#{$assetsPath}/images/test.png');
+*/
+$vendorPrefix: (-webkit-,-moz-);
+
+@import "./util/_function";
+@import "./util/_normalize";
+@import "./util/_css3";
+@import "./util/_utilities";
+@import "./util/_animations";
+@import "./ui/_Box";
+@import "./ui/_Button";
+@import "./ui/_CheckBox";
+@import "./ui/_RadioButton";
+@import "./ui/_TextBox";
+@import "./ui/_imageContainer";
+@import "./ui/_menu";
+@import "./ui/_scrollAdapter";
+@import "./ui/_simpleDataGrid";
+@import "./ui/_rating";
+@import "../../themes/mainTheme/css/main";
+

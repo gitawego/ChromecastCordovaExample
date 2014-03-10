@@ -1,0 +1,57 @@
+{
+    "manager": "com/sesamtv/core/util/data/Proxy",
+    "items": {
+        "common": {
+            "lifetime": 10000,
+            "storageType": "local"
+        },
+        "youtube_item": {
+            "cache": {
+                "lifetime": 1000,
+                "storageType": "local"
+            },
+            "request": {
+                "url": "http://gdata.youtube.com/feeds/api/videos",
+                "queryMap": {
+                    "startIndex": "{%=o.start%}",
+                    "total": "{%=o.total%}"
+                },
+                "type": "xhr",
+                "inputType": "rawData",
+                "config": {
+                    "method": "post",
+                    "content": {}
+                }
+            },
+            "parser": {
+                "name": "vod",
+                "format": {
+                    "input": "json",
+                    "output": {
+                        "type": "xml",
+                        "isCDATA": true
+                    }
+                },
+                "structure": {
+                    "items": {
+                        "path": "feed/entry",
+                        "itemProperties": {
+                            "author": "$$root/feed/author[0]/name/$t",
+                            "id": {
+                                "path": "id/$t"
+                            },
+                            "thumbnail": {
+                                "path": "media$group/media$thumbnail[0]/url"
+                            },
+                            "title": {
+                                "path": "title/$t"
+                            }
+                        }
+                    }
+                }
+
+            }
+
+        }
+    }
+}

@@ -1,0 +1,130 @@
+@mixin receiver() {
+  .chromecast.receiver {
+    /*overflow: hidden;*/
+    div[data-bg]{
+      @include transition('all 1s ease-in');
+
+    }
+    div[data-bg='bg1'] {
+      background: url(#{$chromecastPath}/images/background.jpg) no-repeat;
+    }
+    div[data-bg='bg2'] {
+      background: url(#{$chromecastPath}/images/background2.jpg) no-repeat;
+    }
+    div[data-bg='bg3'] {
+      background: url(#{$chromecastPath}/images/background3.jpg) no-repeat;
+    }
+    background-size: cover;
+    .appName {
+      background: url(#{$chromecastPath}/images/sesamtv_logo.png) no-repeat;
+      min-height: 70px;
+      padding-left: 100px;
+      font-size: 30px;
+      line-height: 55px;
+      margin: 50px 50px auto 50px;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+    .readyToCast {
+      font-size: 60px;
+      left: 50%;
+      margin-left: -25%;
+      top: 40%;
+      position: absolute;
+    }
+    #detail {
+      width: 100%;
+      height: 100%;
+      left:0;
+      top:0;
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.6);
+      opacity: 0;
+      @include transition('all 0.5s ease-in');
+      &.show {
+        opacity: 1;
+      }
+      h2 {
+        margin: 30px 10%;
+        text-shadow: 0 1px 2px #A2A2A2;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .preview {
+        width: 640px;
+        height: 480px;
+        background-size: contain;
+        margin: 10px 10px 10px 10%;
+        background-repeat: no-repeat;
+        float: left;
+        border-radius: 6px;
+        @include vendor-prefix(box-shadow, "2px 2px 5px 0px rgba(10, 10, 10, 1)");
+
+      }
+      .info {
+        float: left;
+        width: 30%;
+        padding-top: 10px;
+        @include rating();
+        .metadata-label {
+          margin-right: 10px;
+          color: #999;
+          text-transform: uppercase;
+        }
+        .metadata-value {
+          color: #eee;
+          border-bottom: 1px solid rgba(255, 255, 255, .1);
+        }
+        > div {
+          display: inline-block;
+        }
+        .duration {
+          width: 50%;
+        }
+        .author {
+          margin-top: 50px;
+        }
+        .viewCount{
+          text-align: right;
+          border-bottom: 1px solid #fff;
+        }
+        .rating{
+          float:right;
+          display:inline-block;
+        }
+        .block {
+          display: block;
+          margin: 10px auto;
+        }
+        .like {
+          img {
+            margin:auto 10px;
+          }
+        }
+        .description {
+          display: block;
+          max-height: 240px;
+          margin: 30px 0;
+          overflow: hidden;
+        }
+      }
+    }
+    video {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: -1;
+      opacity: 0;
+      left:0;
+      top:0;
+      background-color: rgba(0, 0, 0, 0.9);
+      @include transition('all 0.2s ease-in');
+      &.show {
+        opacity: 10;
+        z-index: 2;
+      }
+    }
+  }
+}

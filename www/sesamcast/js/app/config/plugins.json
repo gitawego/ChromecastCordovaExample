@@ -1,0 +1,244 @@
+{
+    "com/sesamtv/core/plugins/Vod": {
+        "isEnabled": true,
+        "defaultIndex": "index",
+        "provider": {
+             "trailers":""
+        },
+        "models": {
+            "com/sesamtv/core/plugins/vod/models/Trailers":{
+                 "provider":{
+                      "trailer":""
+                 }
+            }
+        },
+        "components":{
+            "trailers":{
+                "view":"text!com/sesamtv/core/plugins/vod/views/getTrailers.html",
+                "model":"com/sesamtv/core/plugins/vod/models/Trailers",
+                "namespace":"vod-trailers",
+                "placeAt":".trailers"
+            },
+            "vodMenu":{
+                "view":"text!com/sesamtv/core/plugins/vod/views/vodMenu.html",
+                "model":"com/sesamtv/core/plugins/vod/models/Menu",
+                "namespace":"vod-menu",
+                "placeAt":".vodMenu"
+            }
+        },
+        "topics": {
+            "plugins/vod/show": {
+                "method": "show",
+                "mustLogin": true,
+                "mustHaveRight": false
+            },
+            "plugins/vod/list": {
+                "method": "list",
+                "mustLogin": true,
+                "mustHaveRight": false
+            },
+            "plugins/vod/getTrailers": {
+                "method": "getTrailers",
+                "mustLogin": true,
+                "mustHaveRight": true
+            },
+            "plugins/vod/play": {
+                "method": "play",
+                "mustLogin": true,
+                "mustHaveRight": true
+            },
+            "plugins/vod/destroy": {
+                "method": "destroy",
+                "mustLogin": true,
+                "mustHaveRight": true
+            }
+        }
+    },
+    "com/sesamtv/core/plugins/Menu": {
+        "isEnabled": true,
+        "defaultIndex": "index",
+        "provider": {
+            "trailers":""
+        },
+        "models": {
+            "com/sesamtv/core/plugins/vod/models/Trailers":{
+                "provider":{
+                    "trailer":""
+                }
+            }
+        },
+        "components":{
+            "vodMenu":{
+                "view":"text!com/sesamtv/core/plugins/menu/views/menu.html",
+                "model":"com/sesamtv/core/plugins/menu/models/Menu",
+                "namespace":"vod-menu",
+                "placeAt":".vodMenu"
+            }
+        },
+        "topics": {
+            "plugins/menu/show": {
+                "method": "show",
+                "mustLogin": true,
+                "mustHaveRight": false
+            },
+            "plugins/menu/list": {
+                "method": "list",
+                "mustLogin": true,
+                "mustHaveRight": false
+            },
+            "plugins/menu/play": {
+                "method": "play",
+                "mustLogin": true,
+                "mustHaveRight": true
+            },
+            "plugins/menu/destroy": {
+                "method": "destroy",
+                "mustLogin": true,
+                "mustHaveRight": true
+            },
+            "plugin/menu/unselect":{
+                "event":"unselected"
+            }
+        },
+        "inputEvents": {
+            "keyboard": {
+                "keydown": {
+                    "UP_ARROW": {
+                        "method": "goToPrevItem"
+                    },
+                    "DOWN_ARROW": {
+                        "method": "goToNextItem"
+                    },
+
+                    "RIGHT_ARROW": {
+                        "method": "handleToFocusManager"
+                    }
+                }
+            }
+        }
+    },
+    "com/sesamtv/core/plugins/Player": {
+        "isEnabled": true,
+        "daemon": true
+    },
+    "com/sesamtv/core/plugins/YoutubePlayer": {
+        "isEnabled": true,
+        "daemon": true,
+        "playerId":"youtubePlayer",
+        "topics":{
+            "plugins/youtubePlayer/attachEvent":{
+                "method":"attachEventViaTopic",
+                "mustLogin": true,
+                "mustHaveRight": false
+            },
+            "plugins/youtubePlayer/createPlayer":{
+                "method":"createPlayer",
+                "mustLogin": true,
+                "mustHaveRight": false
+            },
+            "plugins/youtubePlayer/initPlayer":{
+                "method":"initPlayer",
+                "mustLogin": true,
+                "mustHaveRight": false
+            },
+            "plugins/youtubePlayer/destroyPlayer":{
+                "method":"destroyPlayer",
+                "mustLogin": true,
+                "mustHaveRight": false
+            },
+            "plugins/youtubePlayer/load":{
+                "method":"loadVideo",
+                "mustLogin": true,
+                "mustHaveRight": false
+            },
+            "plugins/youtubePlayer/loadVideoFromData":{
+                "method":"loadVideoFromData",
+                "mustLogin": true,
+                "mustHaveRight": false
+            },
+            "plugins/youtubePlayer/play":{
+                "method":"playVideo",
+                "mustLogin": true,
+                "mustHaveRight": false
+            },
+            "plugins/youtubePlayer/pause":{
+                "method":"pauseVideo",
+                "mustLogin": true,
+                "mustHaveRight": false
+            },
+            "plugins/youtubePlayer/stop":{
+                "method":"stopVideo",
+                "mustLogin": true,
+                "mustHaveRight": false
+            },
+
+            "plugins/youtubePlayer/mute":{
+                "method":"muteVideo",
+                "mustLogin": true,
+                "mustHaveRight": false
+            },
+            "plugins/youtubePlayer/unmute":{
+                "method":"muteVideo",
+                "params":true,
+                "mustLogin": true,
+                "mustHaveRight": false
+            },
+            "plugins/youtubePlayer/volume":{
+                "method":"volume",
+                "mustLogin": true,
+                "mustHaveRight": false
+            }
+        }
+    },
+    "com/sesamtv/core/plugins/TvGrid": {
+        "isEnabled": true,
+        "//sound":{
+            "ok":"assets/common/media/sound_ok.ogg",
+            "move":"assets/common/media/sound_move.ogg"
+        },
+        "components":{
+            "videos":{
+                "view":"text!com/sesamtv/core/plugins/tvGrid/views/tvGrid.html",
+                "model":"com/sesamtv/core/plugins/tvGrid/models/Videos",
+                "namespace":"vod-videos",
+                "placeAt":".vodVideos"
+            }
+        },
+        "topics":{
+            "plugins/tvGrid/show": {
+                "method": "show",
+                "mustLogin": true,
+                "mustHaveRight": false
+            },
+            "plugins/tvGrid/detail": {
+                "method": "buildVodDetail",
+                "mustLogin": true,
+                "mustHaveRight": false
+            },
+            "plugin/tvGrid/unselect":{
+                "event":"unselected"
+            }
+        },
+        "inputEvents": {
+            "keyboard": {
+                "keydown": {
+                    "UP_ARROW": {
+                        "method": "goToAboveItem"
+                    },
+                    "DOWN_ARROW": {
+                        "method": "goToBelowItem"
+                    },
+                    "LEFT_ARROW": {
+                        "method": "goToLeftItem"
+                    },
+                    "RIGHT_ARROW": {
+                        "method": "goToRightItem"
+                    },
+                    "ENTER": {
+                        "method": "selectCurrentItem"
+                    }
+                }
+            }
+        }
+    }
+}

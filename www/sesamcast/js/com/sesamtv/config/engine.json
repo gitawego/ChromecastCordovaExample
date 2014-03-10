@@ -1,0 +1,217 @@
+{
+    "com/sesamtv/core/engine/BootManager": {
+        "forceToDefaultApp": true,
+        "router": {
+            "handler": "com/sesamtv/core/util/Router",
+            "config": {
+                "prefixPattern": "/:appName/*"
+            }
+        },
+        "dependencies": [
+            "com/sesamtv/core/util/hasFeature/html5",
+
+            "com/sesamtv/core/engine/input/Manager",
+            "com/sesamtv/core/engine/input/devices/Keyboard",
+            "com/sesamtv/core/engine/input/devices/Mouse",
+            "com/sesamtv/core/engine/input/devices/Cordova",
+            "com/sesamtv/core/engine/FocusManager",
+            "com/sesamtv/core/engine/ModuleManager",
+            "com/sesamtv/core/engine/RouteManager"
+        ],
+        "trigger": "stateManager/init"
+    },
+    "com/sesamtv/core/engine/RouteManager": {
+        "managerName": "state",
+        "topics": {
+            "stateManager/changeState": {
+                "method": "setRoute"
+            },
+            "stateManager/init": {
+                "method": "init",
+                "once": true
+            }
+        }
+    },
+    "com/sesamtv/core/engine/ErrorManager": {
+        "managerName": "error",
+        "enableDialog": false,
+        "logError": true,
+        "systemErrorDialog": true,
+        "topics":{
+            "errorManager/error":{
+                "method":"error"
+            },
+            "errorManager/debug":{
+                "method":"debug"
+            },
+            "errorManager/info":{
+                "method":"info"
+            },
+            "errorManager/log":{
+                "method":"log"
+            },
+            "errorManager/warn":{
+                "method":"warn"
+            }
+        }
+    },
+    "com/sesamtv/core/engine/ModuleManager": {
+        "managerName": "plugin",
+        "topics": {
+            "pluginManager/unload": {
+                "method": "unloadPlugin"
+            },
+            "pluginManager/on": {
+                "method": "topicEvent"
+            },
+            "pluginManager/emit": {
+                "method": "emit"
+            },
+            "pluginManager/addPlugins": {
+                "method": "addPlugins"
+            },
+            "focusManager/select": {
+                "method": "selectPlugin"
+            },
+            "focusManager/unselect": {
+                "method": "unselectPlugin"
+            },
+            "focusManager/focus": {
+                "method": "focusPlugin",
+                "params": "focus"
+            },
+            "focusManager/blur": {
+                "method": "focusPlugin",
+                "params": "blur"
+            }
+        },
+        "regExp": {
+            "plugins": {
+                "pattern": "/plugins/",
+                "flags": ""
+            }
+        }
+    },
+    "com/sesamtv/core/engine/input/Manager": {
+        "managerName": "input",
+        "envMapping": {
+            "device": ["mouse", "bbox"],
+            "computer": ["mouse", "keyboard","cordova"]
+        },
+        "devicesConfig": {
+            "bbox": {
+                "eventName":"keydown",
+                "globalCode": ["KEY_WELCOME", "KEY_POWER"],
+                "defaultToGlobalCode": ["KEY_GUIDE"]
+            }
+        },
+        "topics": {
+            "inputManager/setCurrentChannel": {
+                "method": "setCurrentChannel"
+            },
+            "inputManager/getCurrentChannel": {
+                "method": "getCurrentChannel"
+            },
+            "inputManager/importDevices": {
+                "method": "importDevices"
+            },
+            "inputManager/getDevice": {
+                "method": "getDevice"
+            }
+        }
+    },
+    "com/sesamtv/core/engine/input/KeyCodeMap":{
+        "maps":{
+            "0":{
+                "32928": {
+                    "type":"action",
+                    "key":"POWER",
+                    "desc":""
+                },
+                "32932": {
+                    "type":"action",
+                    "key":"GUIDE",
+                    "desc":""
+                }
+            },
+            "1":{
+                "4208": {
+                    "type":"action",
+                    "key":"HOME",
+                    "desc":""
+                },
+                "4134":{
+                    "type":"error",
+                    "key":"CONNECTION_FAILED",
+                    "desc":"connection has failed"
+                }
+            }
+        }
+    },
+    "com/sesamtv/core/engine/FocusManager": {
+        "managerName": "focus",
+        "topics": {
+            "focusManager/delegateFocus": {
+                "method": "delegateFocus"
+            },
+            "focusManager/attachInput": {
+                "method": "attachInput"
+            },
+            "focusManager/addFocusGroup": {
+                "method": "addFocusGroup"
+            },
+            "focusManager/switchGroup": {
+                "method": "switchGroup"
+            },
+            "focusManager/revert": {
+                "method": "revert"
+            },
+            "focusManager/selectMap": {
+                "method": "selectMap"
+            },
+            "focusManager/focusMap": {
+                "method": "focus"
+            }
+        },
+        "inputEvents": {
+            "keyboard": {
+                "keydown": {
+                    "UP_ARROW": {
+                        "method": "focus",
+                        "params": {
+                            "direction": "prev",
+                            "axis": "y"
+                        }
+                    },
+                    "DOWN_ARROW": {
+                        "method": "focus",
+                        "params": {
+                            "direction": "next",
+                            "axis": "y"
+                        }
+                    },
+                    "LEFT_ARROW": {
+                        "method": "focus",
+                        "params": {
+                            "direction": "prev",
+                            "axis": "x"
+                        }
+                    },
+                    "RIGHT_ARROW": {
+                        "method": "focus",
+                        "params": {
+                            "direction": "next",
+                            "axis": "x"
+                        }
+                    },
+                    "ENTER": {
+                        "method": "selectMap"
+                    }
+                }
+            }
+        }
+    },
+    "com/sesamtv/core/util/data/Proxy": {
+        "disableCache": true
+    }
+}

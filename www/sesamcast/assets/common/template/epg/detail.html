@@ -1,0 +1,34 @@
+<div class="detailInner">
+    <div class="leftCol">
+        <div class="titleContainer">
+            <img class="icon" src="{{channelIcon}}"/><span class="title">{{programme.title}}</span>
+        </div>
+        <div class="miniInfo">
+            <div class="time">{{programme.startTime}}-{{programme.stopTime}}</div>
+            <div class="category">{{#programme.category}}<span>{{value}}</span>{{/programme.category}}</div>
+        </div>
+        <div class="desc">
+            {{#programme.desc}}
+            <span class="label">Resumé :&#160;</span>
+            <span class="info">{{programme.desc}}</span>
+            {{/programme.desc}}
+        </div>
+    </div>
+    <div class="rightCol">
+        <div class="preview"></div>
+        <div class="credits">
+            {{#programme.credits}}
+            {{#director}}
+            <div class="item director"><span class="label">Director : </span><span class="info">{{value}}</span></div>
+            {{/director}}
+            {{#presenter}}
+            <div class="item presenter"><span class="label">Presenter : </span><span class="info">{{value}}</span></div>
+            {{/presenter}}
+            <div class="item actor">
+                <span class="label">Actor : </span>
+                <ul class="info">{{#actor}}<li>{{value}}</li>{{/actor}}</ul>
+            </div>
+            {{/programme.credits}}
+        </div>
+    </div>
+</div>

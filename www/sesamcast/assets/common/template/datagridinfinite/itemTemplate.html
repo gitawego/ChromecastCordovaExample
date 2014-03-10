@@ -1,0 +1,14 @@
+{{^inner}}
+<figure class="item" style="width:{{style.width}}px;height:{{style.height}}px" data-item-index="{{{itemIndex}}}">
+{{/inner}}
+	{{#item}}
+    <div class="itemInner" style="{{#item.thumbnail}}background:url({{{item.thumbnail}}});{{/item.thumbnail}}">
+        {{#item.title}}<fgcaption>{{item.title}}</fgcaption>{{/item.title}}
+    </div>
+    {{/item}}
+    {{^item}}
+    <div class="itemInner"></div>
+    {{/item}}
+{{^inner}}
+</figure>
+{{/inner}}

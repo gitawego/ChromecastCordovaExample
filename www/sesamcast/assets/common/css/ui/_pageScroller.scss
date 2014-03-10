@@ -1,0 +1,27 @@
+/* Set the size of the scroller.  Visible border to make the demo easier to understand */
+.pageScroller {
+    /*width: 600px;
+    height: 400px;*/
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden
+}
+
+/* Style each 'page' to be the same size and join together into a long horizontal strip.
+Use display: table on the section wrapper to get rid of whitespace between the inline-blocks. */
+.pageScroller .wrapper {
+    position: relative;
+    width: auto;
+    display: table
+}
+
+.pageScroller .wrapper section {
+    vertical-align: top;
+}
+
+.pageScroller.x .wrapper > * {
+    display: inline-block;
+}
+
+
+

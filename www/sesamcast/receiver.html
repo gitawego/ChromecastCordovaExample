@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html data-cast-api-enabled="true">
+<head>
+    <meta charset="utf-8">
+    <title>SesamTV VOD</title>
+    <link rel="stylesheet" href="./assets/sesamcast/main.css"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon-precomposed" href="assets/common/images/icon.png"/>
+    <script src="https://www.gstatic.com/cast/js/receiver/1.0/cast_receiver.js"></script>
+    <script src="https://rawgithub.com/Dash-Industry-Forum/dash.js/master/dash.min.js"></script>
+
+    <!--
+        <script src="http://192.168.1.47:999/target/target-script-min.js#sesamcast"></script>
+    -->
+</head>
+<body class="chromecast receiver">
+<div class="pt-perspective">
+    <section id="welcome" class="pt-page pt-page-current">
+        <div class="title">SesamTV Cast DEMO</div>
+        <div class="castLogo"></div>
+    </section>
+    <div id="container" class="pt-page" data-bg="bg1">
+        <div class="appName">SesamTV Cast</div>
+        <div class="readyToCast">Ready to cast...</div>
+        <div id="detail"></div>
+        <video></video>
+    </div>
+</div>
+
+
+<!--minify:script|js/sesamtv.js-->
+<script src="bower_components/requirejs/require.js"></script>
+<!--/minify-->
+<script src="js/sesamcast/config.js"></script>
+<script src="js/sesamcast/main.js"></script>
+<script>
+    function getUrlVars() {
+        var vars = {};
+        var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+            vars[key] = value;
+        });
+        return vars;
+    }
+
+    function mpegDashDemo() {
+        var vars = getUrlVars(),
+                url = "http://dash.edgesuite.net/envivio/dashpr/clear/Manifest.mpd",
+                //url = 'http://dash.edgesuite.net/dash264/TestCases/1a/sony/SNE_DASH_SD_CASE1A_REVISED.mpd',
+                video,
+                context,
+                player;
+
+        if (vars && vars.hasOwnProperty("url")) {
+            url = vars.url;
+        }
+
+        video = document.querySelector("video");
+        video.style.zIndex = 10;
+        video.style.opacity = 1;
+        context = new Dash.di.DashContext();
+        player = new MediaPlayer(context);
+
+        player.startup();
+
+        player.attachView(video);
+        player.setAutoPlay(true);
+        player.debug.setLogToBrowserConsole(false);
+        player.attachSource(url);
+        return player;
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+$baseFont:16 !default;
+
+@function em($target, $context: $baseFont) {
+  @return ($target / $context) * 1em;
+}
+
+@function parseInt($n) {
+  @return $n / ($n * 0 + 1);
+}
+
+
+//usage: http://codepen.io/thejameskyle/pen/JmBjc
+@mixin rem($property, $values) {
+  $px : ();
+  $rem: ();
+
+  $root: $baseFont;
+
+  @each $value in $values {
+    @if $value == 0 or $value == auto {
+      $px : append($px , $value);
+      $rem: append($rem, $value);
+    }
+
+    @else if type-of($value) == number {
+      $unit: unit($value);
+      $val: parseInt($value);
+
+      @if $unit == "px" {
+        $px : append($px,  $value);
+        $rem: append($rem, ($val / $root + rem));
+      }
+
+      @if $unit == "rem" {
+        $px : append($px,  ($val * $root + px));
+        $rem: append($rem, $value);
+      }
+    }
+
+    @else {
+      $px : append($px,  $value);
+      $rem: append($rem, $value);
+    }
+  }
+
+  @if $px == $rem {
+    #{$property}: $px;
+  } @else {
+    #{$property}: $px;
+    #{$property}: $rem;
+  }
+}
+
+@function rem($value) {
+  $root: $baseFont;
+  $val: parseInt($value);
+  $return: ();
+
+  @if unit($value) == "px" {
+    $return: append($return, ($val / $root + rem));
+  } @else {
+    $return: append($return, ($val * $root + px));
+  }
+
+  @return $return;
+}
+

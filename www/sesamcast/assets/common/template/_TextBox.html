@@ -1,0 +1,7 @@
+<input
+    class="textbox {%=(o.baseClass || '')%} {%=(o.theme || '')%}"
+{% var keys = Object.keys(o.prop),i=0,l=keys.length; %}
+{% for(;i< l;i++){ %}
+    {%#keys[i]%}="{%#o.prop[keys[i]]%}"
+{% } %}
+/>

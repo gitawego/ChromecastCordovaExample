@@ -1,0 +1,51 @@
+.scrollAdapter {
+  outline: 0;
+  &.browserAdapter{
+    -webkit-overflow-scrolling: touch;
+    &.x{
+      overflow-x:scroll;
+      overflow-y:hidden;
+    }
+    &.y{
+      overflow-y:scroll;
+      overflow-x:hidden;
+    }
+    &.xy{
+      overflow:scroll;
+    }
+    &.disableScrollbar{
+      overflow:hidden;
+    }
+  }
+  &.iScrollAdapter{
+    overflow:hidden;
+  }
+  &.useAnimation{
+     > div:first-child{
+      @include transform(translate3d(0,0,0));
+    }
+  }
+}
+
+/*.scrollAdapter.browserAdapter.y .scrollAnim{
+    overflow-y:scroll !important;
+}
+.scrollAdapter.browserAdapter.x .scrollAnim{
+    overflow-x:scroll !important;
+}
+.scrollAdapter.browserAdapter.xy .scrollAnim{
+    overflow:scroll !important;
+}*/
+
+/*
+.scrollAdapter.browser.lockY {
+    overflow-x:auto;
+    overflow-y:hidden;
+}
+.scrollAdapter.browser.lockX {
+    overflow-y:auto;
+    overflow-x:hidden;
+}
+.scrollAdapter.browser.lockXY {
+    overflow:hidden;
+}*/

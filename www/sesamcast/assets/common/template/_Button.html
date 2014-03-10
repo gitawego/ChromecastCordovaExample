@@ -1,0 +1,21 @@
+{% if(o.items.length > 1){ %}
+<div class="btn-group {% if(o.baseClass){ %}{%=o.baseClass%}{% } %}">
+    {% for(var i=0,l=o.items.length;i < l;i++){ %}
+        {% if(typeof(o.items[i]) === 'string'){ %}
+        <button class="btn {%#(o.theme || 'default')%} icon" type="button"><span class="{%#o.items[i]%}"></span></button>
+        {% }else{ %}
+        <button class="btn {%#(o.theme || 'default')%} {%#(o.items[i].cls || '')%}" type="button">{%#o.items[i].label%}</button>
+        {% } %}
+    {% } %}
+</div>
+{% }else{ %}
+    {% if(typeof(o.items[0]) === 'string'){ %}
+        <button class="btn {% if(o.baseClass){ %}{%=o.baseClass%}{% } %} {%#(o.theme || 'default')%} icon"
+                type="{%=(o.type || 'button')%}"><span class="{%#o.items[0]%}"></span></button>
+    {% }else{ %}
+        <button class="btn {% if(o.baseClass){ %}{%=o.baseClass%}{% } %} {%#(o.theme || 'default')%} {%#(o.items[0].cls || '')%}"
+                type="{%=(o.type || 'button')%}">{%#o.items[0].label%}</button>
+    {% } %}
+
+{% } %}
+

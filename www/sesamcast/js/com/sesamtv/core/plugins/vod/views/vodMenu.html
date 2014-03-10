@@ -1,0 +1,11 @@
+<div class="vodMenu" style="display:inline-block">
+    <ul class="menu" data-bind-{%=o.namespace%}="foreach: menu">
+        <li class="menuItem" data-bind-{%=o.namespace%}="attr:${cls}#className, event:$(loadGrid)#click" >
+            <span data-bind-{%=o.namespace%}="${name}"></span>
+        </li>
+    </ul>
+
+</div>
+<div>
+    <img data-bind-{%=o.namespace%}="attr:logo#src" />
+</div>

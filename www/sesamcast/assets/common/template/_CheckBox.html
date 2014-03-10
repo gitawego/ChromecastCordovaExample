@@ -1,0 +1,14 @@
+<div class="{%=o.inputType%} {%=(o.baseClass || '')%} {%=(o.labelPosition || 'before')%} {%=o.id%}">
+    {% if(o.labelPosition==='before' && ('label' in o)){ %}
+    <span class="label">{%=o.label%}</span>
+    {% } %}
+    <div class="{%=(o.theme || '')%}">
+        <input type="{%=o.inputType%}"
+            {% if('value' in o){ %}value="{%=o.value%}"{% } %}
+            id="{%=o.id%}" name="{%=(o.name || o.id)%}"
+            {% if(o.checked){ %}checked{% } %}
+        />
+        <label for="{%=o.id%}"></label>
+    </div>
+    {% if(o.labelPosition==='after' && ('label' in o)){ %}<span class="label">{%=o.label%}</span>{% } %}
+</div>

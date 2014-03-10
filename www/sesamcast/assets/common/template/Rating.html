@@ -1,0 +1,5 @@
+<div class="rating {%=(o.baseClass || '')%} {%=(o.theme || '')%}">
+    {% for(var i=1,l = (o.starNumber || 5);i<=l;i++){ %}
+    <span data-rating="{%=i%}"></span>
+    {% } %}
+</div>

@@ -1,0 +1,73 @@
+<div>
+    <div class="detailInner">
+        <div class="leftArrow" data-bind-{{namespace}}="event:$(showPrevItemDetail)#click">
+            <div class="arrowInner">
+                <div class="prev">1</div>
+                <hr/>
+                <div class="total">5</div>
+                <div class="arrow"></div>
+            </div>
+        </div>
+        <div class="leftCol">
+            <div class="header">
+                <span data-bind-{{namespace}}="title" class="title"></span>
+                <span data-bind-{{namespace}}="attr:age#className" class="csa"></span>
+            </div>
+            <div id="vodPlayer" class="vodPlayer preview" data-bind-{{namespace}}="style:img#backgroundImage,attr:videoId#data-videoid,event:$(playVideoOnClick)#click">
+            </div>
+            <div class="options">
+                <ul data-bind-{{namespace}}="foreach:options">
+                <li data-bind-{{namespace}}="${label},event:$(showOption)#click"></li>
+                </ul>
+                <div class="rating" data-rating-for="user" data-bind-{{namespace}}="event:$(rateIt)#click">
+                    <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                </div>
+            </div>
+            <div class="info">
+                <div>
+                    <span data-bind-{{namespace}}="type"></span>
+                </div>
+                <div>
+                    <span data-bind-{{namespace}}="year"></span>,
+                    <span data-bind-{{namespace}}="duration"></span>
+                </div>
+                <div data-bind-{{namespace}}="foreach:format">
+                    <span data-bind-{{namespace}}="attr:${item}#className"></span>
+                </div>
+                <div data-bind-{{namespace}}="foreach:languages">
+                    <span data-bind-{{namespace}}="attr:${item}#className"></span>
+                </div>
+                <div class="allocine"></div>
+                <div>
+                    <div>Notes :</div>
+                    <div data-rating-for="spectateurs" class="rating">
+                        <span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="intro">
+                <div class="desc" data-bind-{{namespace}}="desc" ></div>
+            </div>
+        </div>
+
+        <div class="suggestions">
+            <div class="title">SUGGESTIONS</div>
+            <ul data-bind-{{namespace}}="foreach:suggestions">
+                <li><img data-bind-{{namespace}}="attr:${thumbnail}#src" /></li>
+            </ul>
+        </div>
+        <div class="rightArrow" data-bind-{{namespace}}="event:$(showNextItemDetail)#click">
+            <div class="arrowInner">
+                <div class="next">3</div>
+                <hr/>
+                <div class="total">5</div>
+                <div class="arrow right"></div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="home" data-bind-{{namespace}}="event:$(backToHome)#click">Retour</div>
+        <div class="logo"></div>
+    </div>
+</div>
+

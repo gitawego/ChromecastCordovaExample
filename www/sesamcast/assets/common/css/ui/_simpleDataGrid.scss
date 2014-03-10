@@ -1,0 +1,69 @@
+/* Set the size of the scroller.  Visible border to make the demo easier to understand */
+.simpleDataGrid {
+  /*width: 600px;
+  height: 400px;*/
+  position: relative;
+  overflow: auto;
+  .gridInner {
+    position: relative;
+    width: auto;
+    .item {
+      vertical-align: top;
+      display: inline-block;
+      @include vendor-prefix(box-sizing,border-box);
+    }
+  }
+  &.x {
+    /*    white-space: nowrap;*/
+    overflow-y: hidden;
+    .gridInner {
+      @include columns((fill auto,gap 0));
+    }
+  }
+  &.y {
+    overflow-x: hidden;
+    /* Style each 'page' to be the same size and join together into a long horizontal strip.
+    Use display: table on the section wrapper to get rid of whitespace between the inline-blocks. */
+    .gridInner {
+      display: table;
+    }
+  }
+
+}
+
+.scrollbar-measure {
+  width: 100px;
+  height: 100px;
+  overflow: scroll;
+  position: absolute;
+  top: -9999px;
+}
+
+
+////custom
+.simpleDataGrid .gridInner .item{
+  border:1px solid #000;
+  margin:0;
+  > *{
+    height: 100%;
+  }
+  .cellInner {
+    background-color: rgba(0, 0, 0, 0.4);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 12px;
+  }
+  .cellTitle {
+    /*position: relative;
+    top: 60%;
+    left: 2%;
+    color: #fff;*/
+  }
+
+}
+
+
+

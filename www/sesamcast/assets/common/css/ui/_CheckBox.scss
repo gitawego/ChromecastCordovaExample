@@ -1,0 +1,581 @@
+.checkbox {
+  display:inline-block;
+}
+.checkbox > div {
+  display:inline-block;
+  vertical-align: middle;
+}
+.checkbox input[type=checkbox] {
+  font-size: 1em;
+  visibility: hidden;
+  position:absolute;
+  //hack for IE <=8
+  visibility: visible\9;
+  position: inherit\9;
+}
+
+.checkbox .slide1 {
+  width: 50px;
+  height: 10px;
+  @include rem(margin,5px);
+  background: #BCDB7A;
+  @include border-radius(50px);;
+  position: relative;
+  @include vendor-prefix(box-shadow,"inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,0.2)");
+}
+
+.checkbox .slide1 input[type=checkbox] + label {
+  display: block;
+  width: 16px;
+  height: 16px;
+  @include border-radius(50px);
+  @include transition(all .4s ease);
+  cursor: pointer;
+  position: absolute;
+  top: -3px;
+  @include rem(top,-3px);
+  @include rem(left,-3px);
+  @include vendor-prefix(box-shadow,0px 2px 5px 0px rgba(0,0,0,0.3));
+  background: #fcfff4;
+  @include vendor-prefix(background,linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%),right);
+  @if $useIEFilters != 0{
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#b3bead',GradientType=0 );
+  }
+}
+
+
+
+.checkbox .slide1 input[type=checkbox]:checked + label{
+  @include rem(left, 37px);
+}
+
+//slide two
+.checkbox .slide2 {
+  width: 80px;
+  height: 30px;
+  background: #333;
+  margin: 20px auto;
+  @include rem(margin, 20px auto);
+  @include border-radius(50px);
+
+  position: relative;
+  @include vendor-prefix(box-shadow,"inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,0.2)");
+
+}
+
+.checkbox .slide2:after {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  height: 2px;
+  width: 52px;
+  @include border-radius(50px);
+  background: #111;
+  @include vendor-prefix(box-shadow,"inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,0.2)");
+}
+
+.checkbox .slide2 label {
+  display: block;
+  width: 22px;
+  height: 22px;
+  @include border-radius(50px);
+  @include transition(all .4s ease);
+  cursor: pointer;
+  position: absolute;
+  @include rem(top,4px);
+  @include rem(left,4px);
+  z-index: 1;
+  @include vendor-prefix(box-shadow,0px 2px 5px 0px rgba(0,0,0,0.3));
+
+  background: #fcfff4;
+  @include vendor-prefix(background,linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%),right);
+  @if $useIEFilters != 0 {
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#b3bead',GradientType=0 );
+  }
+
+}
+
+.checkbox .slide2 label > span{
+  display:none;
+}
+
+.checkbox .slide2 label:after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  @include border-radius(50px);
+  background: #333;
+  left: 6px;
+  top: 6px;
+  @include vendor-prefix(box-shadow,"inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,0.2)");
+}
+
+.checkbox .slide2 input[type=checkbox]:checked + label {
+  left: 54px;
+}
+
+.checkbox .slide2 input[type=checkbox]:checked + label:after {
+  background: #00bf00;
+}
+
+//slide 3
+.checkbox .slide3 {
+  width: 80px;
+  height: 26px;
+  background: #333;
+  margin: 20px auto;
+
+  @include border-radius(50px);
+  position: relative;
+  @include vendor-prefix(box-shadow,"inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,0.2)");
+}
+
+.checkbox .slide3:after {
+  content: 'OFF';
+  font: 12px/26px Arial, sans-serif;
+  color: #000;
+  position: absolute;
+  right: 10px;
+  z-index: 0;
+  font-weight: bold;
+  text-shadow: 1px 1px 0px rgba(255,255,255,.15);
+}
+
+.checkbox .slide3:before {
+  content: 'ON';
+  font: 12px/26px Arial, sans-serif;
+  color: #00bf00;
+  position: absolute;
+  left: 10px;
+  z-index: 0;
+  font-weight: bold;
+}
+
+.checkbox .slide3 label {
+  display: block;
+  width: 34px;
+  height: 20px;
+
+  @include border-radius(50px);
+  @include transition(all .4s ease);
+  cursor: pointer;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  z-index: 1;
+
+  -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.3);
+  box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.3);
+  background: #fcfff4;
+  @include vendor-prefix(background,linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%),right);
+  @if $useIEFilters !=0 {
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#b3bead',GradientType=0 );
+  }
+
+}
+
+.checkbox .slide3 label > span{
+  display:none;
+}
+
+.checkbox .slide3 input[type=checkbox]:checked + label {
+  left: 43px;
+}
+
+
+.checkbox .rounded1 {
+  width: 28px;
+  height: 28px;
+  background: #fcfff4;
+  @include vendor-prefix(background,linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%),right);
+  @if $useIEFilters !=0 {
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#b3bead',GradientType=0 );
+  }
+  margin: 20px auto;
+
+  @include border-radius(50px);
+  @include vendor-prefix(box-shadow,"inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5)");
+
+  position: relative;
+}
+
+.checkbox .rounded1 label {
+  cursor: pointer;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+
+  @include border-radius(50px);
+  left: 4px;
+  top: 4px;
+  @include vendor-prefix(box-shadow,"inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1)");
+
+  @include vendor-prefix(background,linear-gradient(top, #222 0%, #45484d 100%),right);
+  @if $useIEFilters != 0 {
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#222', endColorstr='#45484d',GradientType=0 );
+  }
+
+}
+
+.checkbox .rounded1 label > span{
+  display:none;
+}
+
+.checkbox .rounded1 label:after {
+  @include opacity(0);
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: #00bf00;
+  @include vendor-prefix(background,linear-gradient(top, #00bf00 0%, #009400 100%),right);
+  @include border-radius(50px);
+  top: 2px;
+  left: 2px;
+  @include vendor-prefix(box-shadow,"inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5)");
+}
+
+.checkbox .rounded1 label:hover::after {
+  @include opacity(0.3);
+}
+
+.checkbox .rounded1 input[type=checkbox]:checked + label:after {
+  @include opacity(1);
+}
+
+/* ROUNDED TWO */
+.checkbox .rounded2 {
+  width: 28px;
+  height: 28px;
+  background: #fcfff4;
+
+  @include vendor-prefix(background,linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%),right);
+  @if $useIEFilters !=0 {
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#b3bead',GradientType=0 );
+  }
+
+  margin: 20px auto;
+
+  @include border-radius(50px);
+
+  @include vendor-prefix(box-shadow,"inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5)");
+  position: relative;
+}
+
+.checkbox .rounded2 label {
+  cursor: pointer;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+
+  @include border-radius(50px);
+  left: 4px;
+  top: 4px;
+
+  @include vendor-prefix(box-shadow,"inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1)");
+
+  @include vendor-prefix(background,linear-gradient(top, #222 0%, #45484d 100%),right);
+  @if $useIEFilters != 0 {
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#222', endColorstr='#45484d',GradientType=0 );
+  }
+}
+
+.checkbox .rounded2 label > span{
+  display:none;
+}
+
+.checkbox .rounded2 label:after {
+  @include opacity(0);
+  content: '';
+  position: absolute;
+  width: 9px;
+  height: 5px;
+  background: transparent;
+  top: 5px;
+  left: 4px;
+  border: 3px solid #fcfff4;
+  border-top: none;
+  border-right: none;
+  @include transform(rotate(-45deg));
+}
+
+.checkbox .rounded2 label:hover::after {
+  @include opacity(0.3);
+}
+
+.checkbox .rounded2 input[type=checkbox]:checked + label:after {
+  @include opacity(1);
+}
+
+/* SQUARED ONE */
+.checkbox .squared1 {
+  width: 28px;
+  height: 28px;
+  background: #fcfff4;
+
+  @include vendor-prefix(background,linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%),right);
+  @if $useIEFilters !=0 {
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#b3bead',GradientType=0 );
+  }
+
+  margin: 20px auto;
+  @include vendor-prefix(box-shadow,"inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5)");
+
+  position: relative;
+}
+
+.checkbox .squared1 label {
+  cursor: pointer;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 4px;
+  top: 4px;
+
+  @include vendor-prefix(box-shadow,"inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1)");
+
+  @include vendor-prefix(background,linear-gradient(top, #222 0%, #45484d 100%),right);
+  @if $useIEFilters != 0 {
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#222', endColorstr='#45484d',GradientType=0 );
+  }
+}
+
+.checkbox .squared1 label > span{
+  display:none;
+}
+
+.checkbox .squared1 label:after {
+  @include opacity(0);
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: #00bf00;
+  @include vendor-prefix(background,linear-gradient(top, #00bf00 0%, #009400 100%),right);
+
+  top: 2px;
+  left: 2px;
+  @include vendor-prefix(box-shadow,"inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5)");
+}
+
+.checkbox .squared1 label:hover::after {
+  @include opacity(0.3);
+}
+
+.checkbox .squared1 input[type=checkbox]:checked + label:after {
+  @include opacity(1);
+}
+
+/* SQUARED TWO */
+.checkbox .squared2 {
+  width: 28px;
+  height: 28px;
+  background: #fcfff4;
+
+  @include vendor-prefix(background,linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%),right);
+  @if $useIEFilters !=0 {
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#b3bead',GradientType=0 );
+  }
+  margin: 20px auto;
+
+  @include vendor-prefix(box-shadow,"inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5)");
+  position: relative;
+}
+
+.checkbox .squared2 label {
+  cursor: pointer;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 4px;
+  top: 4px;
+
+  @include vendor-prefix(box-shadow,"inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1)");
+
+  @include vendor-prefix(background,linear-gradient(top, #222 0%, #45484d 100%),right);
+  @if $useIEFilters != 0 {
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#222', endColorstr='#45484d',GradientType=0 );
+  }
+}
+
+.checkbox .squared2 label > span{
+  display:none;
+}
+
+.checkbox .squared2 label:after {
+  @include opacity(0);
+  content: '';
+  position: absolute;
+  width: 9px;
+  height: 5px;
+  background: transparent;
+  top: 4px;
+  left: 4px;
+  border: 3px solid #fcfff4;
+  border-top: none;
+  border-right: none;
+  @include transform(rotate(-45deg));
+}
+
+.checkbox .squared2 label:hover::after {
+  @include opacity(0.3);
+}
+
+.checkbox .squared2 input[type=checkbox]:checked + label:after {
+  @include opacity(1);
+}
+
+
+/* SQUARED THREE */
+.checkbox .squared3 {
+  width: 20px;
+  height:20px;
+  margin: 20px auto;
+  position: relative;
+}
+
+.checkbox .squared3 label {
+  cursor: pointer;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 0;
+  left: 0;
+  border-radius: 4px;
+
+  @include vendor-prefix(box-shadow,"inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1)");
+
+  @include vendor-prefix(background,linear-gradient(top, #222 0%, #45484d 100%),right);
+  @if $useIEFilters != 0 {
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#222', endColorstr='#45484d',GradientType=0 );
+  }
+}
+
+.checkbox .squared3 label > span{
+  display:none;
+}
+
+.checkbox .squared3 label:after {
+  @include opacity(0);
+  content: '';
+  position: absolute;
+  width: 9px;
+  height: 5px;
+  background: transparent;
+  top: 4px;
+  left: 4px;
+  border: 3px solid #fcfff4;
+  border-top: none;
+  border-right: none;
+
+  @include transform(rotate(-45deg));
+}
+
+.checkbox .squared3 label:hover::after {
+  @include opacity(0.3);
+}
+
+.checkbox .squared3 input[type=checkbox]:checked + label:after {
+  @include opacity(1);
+}
+
+/* SQUARED FOUR */
+.checkbox .squared4 {
+  width: 20px;
+  height:20px;
+  margin: 20px auto;
+  position: relative;
+}
+
+.checkbox .squared4 label {
+  cursor: pointer;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 0;
+  left: 0;
+  border-radius: 4px;
+
+  @include vendor-prefix(box-shadow,"inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5)");
+  background: #fcfff4;
+
+  @include vendor-prefix(background,linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%),right);
+  @if $useIEFilters !=0 {
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#b3bead',GradientType=0 );
+  }
+}
+
+.checkbox .squared4 label > span{
+  display:none;
+}
+
+.checkbox .squared4 label:after {
+  @include opacity(0);
+  content: '';
+  position: absolute;
+  width: 9px;
+  height: 5px;
+  background: transparent;
+  top: 4px;
+  left: 4px;
+  border: 3px solid #333;
+  border-top: none;
+  border-right: none;
+
+  @include transform(rotate(-45deg));
+}
+
+.checkbox .squared4 label:hover::after {
+  @include opacity(0.5);
+}
+
+.checkbox .squared4 input[type=checkbox]:checked + label:after {
+  @include opacity(1);
+}
+
+
+//default with checkbox at the right side
+.checkbox .default{
+  display:inline-block;
+}
+.checkbox .default .label{
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+.checkbox .default input[type=checkbox] + label {
+  /*  color:#f2f2f2;
+    font-family: Arial, sans-serif;
+    font-size: 14px;*/
+}
+
+.checkbox .default input[type=checkbox] + label {
+  display: inline-block;
+  width: 19px;
+  height: 19px;
+  margin: 0.25em 0.5em 0.25em 0.25em;
+  border: 0.0625em solid rgb(192, 192, 192);
+  border-radius: 0.25em;
+  background: rgb(224, 224, 224);
+  @include vendor-prefix(background-image, linear-gradient(rgb(224, 224, 224), rgb(240, 240, 240)), right);
+  vertical-align: middle;
+
+  cursor: pointer;
+}
+.checkbox .default input[type=checkbox]:active + label{
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.6), inset 0 2px 6px rgba(0, 0, 0, 0.1), inset 0 -18px 15px -10px rgba(0, 0, 0, 0.05);
+}
+
+.checkbox .default input[type=checkbox]:checked + label:after {
+  content: '\2713';
+  display: block;
+  width: 1em;
+  color: rgb(153, 204, 102);
+  @include rem(font-size, 20px);
+  line-height: 1em;
+  text-align: center;
+  text-shadow: 0 0 0.0714em rgb(115, 153, 77);
+}

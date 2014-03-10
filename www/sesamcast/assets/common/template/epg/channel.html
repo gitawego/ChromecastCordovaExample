@@ -1,0 +1,13 @@
+<li class="channel {{^item}}empty{{/item}} itemIndex-{{{itemIndex}}}"
+    {{#item}}data-channel="{{item.id}}"{{/item}}
+    {{#item}}data-date="{{item.date}}"{{/item}}
+    style="{{#parseStyle}}{{width}}{{/parseStyle}}
+                {{#parseStyle}}{{height}}{{/parseStyle}}"
+    data-item-index="{{{itemIndex}}}"
+        >
+
+        <div class="programmes" style="width:{{item.channelSize}}px;left:{{item.leadingSize}}px">
+
+        </div>
+
+</li>

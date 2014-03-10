@@ -1,0 +1,18 @@
+<div class="deviceListContainer">
+    <header>
+        Select your Chromecast network
+    </header>
+    <ul>
+        {{#deviceList}}
+        <li class="deviceItem {{#isSelected}}active{{/isSelected}} {{#isTabProjected}}active{{/isTabProjected}}"
+            data-id="{{id}}"
+        {{#isTabProjected}}data-tabProjected="data-tabProjected"{{/isTabProjected}}>
+        <span class="deviceName">{{name}}</span>
+        <span class="deviceIp">{{ipAddress}}</span>
+        </li>
+        {{/deviceList}}
+        {{^deviceList}}
+        <li>no device found.</li>
+        {{/deviceList}}
+    </ul>
+</div>

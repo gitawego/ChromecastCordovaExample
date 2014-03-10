@@ -1,0 +1,21 @@
+.lazyloadData {
+	position:relative;
+
+	.item {
+		display:inline-block;
+		@include vendor-prefix(box-sizing,border-box);
+		vertical-align: top;
+		.itemInner{
+			background-size: contain;
+			background-repeat: no-repeat;
+		}
+	}
+	&.y{
+        .inner {
+          /*height:100%;*/
+        }
+		.item{
+			/*float:left;*/
+		}
+	}
+}

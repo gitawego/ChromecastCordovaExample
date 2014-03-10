@@ -1,0 +1,89 @@
+.imageContainer {
+  float: left;
+  padding-right: 25px;
+  padding-top: 2px;
+  text-align: right;
+  @include vendor-prefix(transition, padding 0.3s ease-out);
+  width: 25%;
+  @media screen and (min-width: 1024px) {
+    padding-right: 30px;
+  }
+  @media screen and (min-width: 1400px) {
+    padding-right: 35px;
+  }
+  .imageLink {
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    @include vendor-prefix(transition, height 0.3s ease-out, width 0.3s ease-out);
+    &.landscape {
+      height: 106.33846px;
+      @media screen and (min-width: 1400px) {
+        height: 124.06154px;
+      }
+
+      @media screen and (min-width: 1680px) {
+        height: 140.30769px;
+      }
+    }
+    &.portrait {
+      height: 195.0px;
+      @media screen and (min-width: 1400px) {
+        height: 227.5px;
+      }
+
+      @media screen and (min-width: 1680px) {
+        height: 257.29167px;
+      }
+    }
+    > img {
+      max-width: 100%;
+    }
+    width: 144px;
+    @media screen and (min-width: 1400px) {
+      width: 168px;
+    }
+
+    @media screen and (min-width: 1680px) {
+      width: 190px;
+    }
+  }
+  span {
+    display: inline-block;
+    position: relative;
+    img {
+      position: relative;
+      z-index: 1;
+    }
+    :after,
+    :before {
+      background: #fdfdfd;
+      border-color: #ddd;
+      border-style: solid;
+      border-width: 1px;
+      content: "";
+      height: 112%;
+      left: -7%;
+      margin-left: -1px;
+      margin-top: -1px;
+      position: absolute;
+      top: -6%;
+      width: 114%;
+    }
+    :before {
+      @include transform(rotate(5deg));
+      filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.9961946980917455, M12=-0.08715574274765817, M21=0.08715574274765817, M22=0.9961946980917455, sizingMethod='auto expand');
+      zoom: 1;
+    }
+  }
+
+}
+
+.ie8 .imageContainer span {
+  display: inline;
+}
+
+.ie8 .imageContainer span:after,
+.ie8 .imageContainer span:before {
+  display: none;
+}

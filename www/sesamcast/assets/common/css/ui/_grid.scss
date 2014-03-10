@@ -1,0 +1,51 @@
+.grid {
+    overflow: auto;
+    /*width: auto;
+    height: auto;*/
+    position: relative;
+    /*-webkit-transform: translateZ(0);*/
+
+}
+
+.grid .group {
+    color: rgba(255, 255, 255, 0.6);
+    border: solid transparent;
+    margin: auto 2px;
+    /* stb doesn't like inline-block */
+    /*display: inline-block;*/
+    float:left;
+}
+
+.grid .cell {
+    width: 200px;
+    height: 150px;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: rgba(255, 255, 255, 0.6);
+    margin:2px auto;
+
+}
+
+.grid .cell * {
+    margin : 0;
+    padding : 0;
+    background-size: 100% auto;
+}
+
+
+.grid .cell .cellInner {
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+}
+
+.grid .selected {
+    border: red thin solid;
+    /*background-color: rgba(255, 255, 255, 0.4);
+    color: rgba(43, 43, 43, 0.7);*/
+}
+
+/*
+.scroller.y > .grid  {
+    -webkit-transition :top 250ms ease , -webkit-transform 250ms ease-out;
+}*/

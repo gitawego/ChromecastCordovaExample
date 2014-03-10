@@ -1,0 +1,10 @@
+.textbox.placeholder{
+  @include fontOpacity(#000,0.3);
+}
+.textbox.warning {
+  border: 1px solid rgb(255, 92, 0);
+}
+.textbox.error,
+.textbox.invalid{
+  border:1px solid rgb(255, 0, 0);
+}

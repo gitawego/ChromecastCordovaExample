@@ -1,0 +1,222 @@
+{
+    "defaultState": "videosList",
+    "manager": "com/sesamtv/core/engine/RouteManager",
+    "routePattern": {
+        ":state/*": "stateRoute",
+        ":state/:action/:params?": "actionRoute"
+    },
+    "transitionMode": {
+        "default": "combine",
+        "chain": "transitionChain",
+        "combine": "transitionCombine"
+    },
+    "items": {
+        "videosList": {
+            "scene": "videosList",
+            "focus": {
+                "map": {
+                    "videosBrowser": [0, 0]
+                },
+                "focus": "videosBrowser"
+            },
+            "routes": {
+                "home": {
+                    "topic": "plugins/videosBrowser/startup"
+                },
+                "play": {
+                    "topic": "plugins/videosBrowser/play",
+                    "params": {
+                        "type": "string"
+                    }
+                },
+                "detail": {
+                    "topic": "plugins/videosBrowser/detail",
+                    "params": {
+                        "type": "string"
+                    }
+                }
+            },
+            "plugins": [
+                {
+                    "id": "youtubePlayer",
+                    "plugin": "com/sesamtv/core/plugins/YoutubePlayer",
+                    "config": {
+                        "theme": "black",
+                        "playerId": "vodPlayer",
+                        "inputEvents": {
+                            "keyboard": {
+                                "keydown": {
+                                    "UP_ARROW": {
+                                        "method": "setVolumeBy",
+                                        "params": 5
+                                    },
+                                    "DOWN_ARROW": {
+                                        "method": "setVolumeBy",
+                                        "params": -5
+                                    },
+                                    "LEFT_ARROW": {
+                                        "method": "seekBy",
+                                        "params": -10
+                                    },
+                                    "RIGHT_ARROW": {
+                                        "method": "seekBy",
+                                        "params": 10
+                                    },
+                                    "ENTER": {
+                                        "method": "fullscreen"
+                                    },
+                                    "ESCAPE": {
+                                        "method": "destroyPlayer"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "id": "videosBrowser",
+                    "plugin": "app/plugins/VideosBrowser",
+                    "config": {
+                        "root": "#videosList",
+                        "headerHeight": 100,
+                        "footerHeight": 100,
+                        "chromecast": {
+                            "appId": "36A11D2B"
+                        },
+                        "chromecastVod": {
+                            "appId": "31a76198-2182-481a-a4a6-27d351872026_2"
+                        },
+                        "inputEvents": {
+                            "cordova": {
+                                "backbutton": {
+                                    "method": "exitApp"
+                                }
+                            }
+                        },
+                        "lazyloadDataParams": {
+                            "direction": "y",
+                            "totalItemsLimit": 500,
+                            "autoStart": true,
+                            "scrollAdapter": {
+                                "adapter": "browser",
+                                "useAnimation": false
+                            },
+                            "itemStyle": {
+                                "width": "100%",
+                                "height": "auto"
+                            },
+                            "style": {
+                                "w": 562,
+                                "h": "auto"
+                            }
+                        },
+                        "animator": {
+                            "sesamcast": {
+                                "open": {
+                                    "sync": false,
+                                    "animations": [
+                                        {
+                                            "node": "#welcome",
+                                            "className": "pt-page-rotateFoldTop",
+                                            "useKeyframe": true,
+                                            "events": {
+                                                "end": {
+                                                    "listener": "onWelcomepageAnimEnd"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "node": "#container",
+                                            "className": "pt-page-moveFromBottomFade",
+                                            "useKeyframe": true,
+                                            "events": {
+                                                "beforebegin": {
+                                                    "listener": "onContainerAnimBegin"
+                                                },
+                                                "end": {
+                                                    "listener": "onContainerAnimEnd"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "ctrlEvents": {
+                            ".videoControllerContainer .ctrlItem.back": {
+                                "event": "click",
+                                "method": "backToVideoList"
+                            },
+                            ".videoControllerContainer .ctrlItem.play": {
+                                "event": "click",
+                                "method": "castVideo"
+                            },
+                            ".videoControllerContainer .ctrlItem.stop": {
+                                "event": "click",
+                                "method": "stopVideo"
+                            },
+                            ".videoControllerContainer .ctrlItem.prev": {
+                                "event": "click",
+                                "method": "seekVideoPrev"
+                            },
+                            ".videoControllerContainer .ctrlItem.next": {
+                                "event": "click",
+                                "method": "seekVideoNext"
+                            },
+                            ".videoControllerContainer .ctrlItem.mute": {
+                                "event": "click",
+                                "method": "mute"
+                            },
+                            ".videoControllerContainer .ctrlItem.incrVolume": {
+                                "event": "click",
+                                "method": "incrVolume"
+                            },
+                            ".videoControllerContainer .ctrlItem.decrVolume": {
+                                "event": "click",
+                                "method": "decrVolume"
+                            },
+                            ".vodControllerContainer .ctrlItem.left": {
+                                "event": "click",
+                                "method": "sendLeftKey"
+                            },
+                            ".vodControllerContainer .ctrlItem.right": {
+                                "event": "click",
+                                "method": "sendRightKey"
+                            },
+                            ".vodControllerContainer .ctrlItem.up": {
+                                "event": "click",
+                                "method": "sendUpKey"
+                            },
+                            ".vodControllerContainer .ctrlItem.down": {
+                                "event": "click",
+                                "method": "sendDownKey"
+                            },
+                            ".vodControllerContainer .ctrlItem.text": {
+                                "event": "click",
+                                "method": "sendEnterKey"
+                            },
+                            ".vodControllerContainer .ctrlItem.back": {
+                                "event": "click",
+                                "method": "sendEscapeKey"
+                            }
+                        }
+                    }
+                }
+            ],
+            "events": {
+                "videosBrowser/selectItem": "youtubePlayer/play"
+            },
+            "defaultRoute": {
+                "route": "home",
+                "force": true,
+                "params": null
+            },
+            "transitionMode": "combine"
+
+        },
+        "mapa": {
+            "plugin": "com/sesamtv/core/plugins/TvGrid",
+            "transitionMode": "chain"
+        }
+    }
+}

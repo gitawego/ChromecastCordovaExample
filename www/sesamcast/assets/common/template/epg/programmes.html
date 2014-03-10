@@ -1,0 +1,14 @@
+{{#programmes}}
+<a class="item {{categoryList}}"
+   data-index="{{index}}"
+   data-start="{{start}}"
+   data-stop="{{stop}}"
+   data-channelId="{{channel}}"
+   title="{{title}}"
+   style="left:{{timelinePosition.left}}{{unit}};
+                        right:{{timelinePosition.right}}{{unit}}">
+    <span class="info title">{{title}}</span>
+    <span class="info desc">{{desc}}</span>
+    <span class="info startTime">{{startTime}}</span>
+</a>
+{{/programmes}}

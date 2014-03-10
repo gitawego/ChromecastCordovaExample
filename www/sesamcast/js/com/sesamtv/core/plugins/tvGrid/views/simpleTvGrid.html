@@ -1,0 +1,15 @@
+<div class="header">
+    <div class="title" data-bind-{{namespace}}="title"></div>
+</div>
+<div data-bind-{{namespace}}="mosaic: videos" data-mosaic-params='mosaicParams'>
+</div>
+<div class="footer">
+    <div class="home" data-bind-{{namespace}}="event:$(backToMenu)#click">Accueil</div>
+    <div class="pagination">
+        <span class="arrow left"></span>
+        <span data-bind-{{namespace}}="pagination"></span>
+        <span class="arrow right"></span>
+    </div>
+    <div class="logo"></div>
+</div>
+

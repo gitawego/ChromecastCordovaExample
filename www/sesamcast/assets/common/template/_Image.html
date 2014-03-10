@@ -1,0 +1,16 @@
+<figure class="{%=(o.baseClass || '')%} {%=(o.theme || '')%} {%=(o.id || '')%}" {% if('id' in o){ %}id="{%=o.id%}"{% } %} >
+    {% for(var i=0,l=o.items.length;i < l;i++){ %}
+        {% if(o.items[i].tag === 'svg'){ %}
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                {% for(var ii=0,ll=o.items[i].nodes.length;ii < ll;ii++){ %}
+                    <{%=o.items[i].nodes[ii].tag%}
+                        {%#o.tmplHelper.buildProps(o.items[i].nodes[ii])%}
+                    />
+                {%}%}
+            </svg>
+        {% }else{ %}
+            <img {%#o.tmplHelper.buildProps(o.items[i])%} />
+        {% } %}
+    {% } %}
+    {% if(o.caption){ %}<figcaption>{%#o.caption%}</figcaption>{% } %}
+</figure>

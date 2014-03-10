@@ -1,0 +1,10 @@
+<div class="menu">
+    <div class="menu-subtitle" data-bind-{{namespace}}="subTitle">
+    </div>
+    <ul data-bind-{{namespace}}="foreach: menu">
+        <li class="menuItem" data-bind-{{namespace}}="attr:${cls}#className, event:$(loadGrid)#click" >
+            <span data-bind-{{namespace}}="${name}"></span>
+        </li>
+    </ul>
+</div>
+

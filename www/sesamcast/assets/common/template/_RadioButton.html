@@ -1,0 +1,14 @@
+<ul class="radioButtonGroup {%=(o.baseClass || '')%} {%=o.name%}">
+    {% for(var i=0,l=o.items.length;i< l;i++){ %}
+        <li class="{%=(o.items[i].cls || '')%}">
+            {% if(o.labelPosition==='before' && 'label' in o.items[i]){ %}
+            <span class="label">{%=o.items[i].label%}</span>
+            {% } %}
+            <div class="{%=(o.theme || '')%}">
+                <input type="radio" id="{%=o.items[i].id%}" name="{%=o.name%}" {% if(o.items[i].checked){ %}checked{% } %} />
+                <label for="{%=o.items[i].id%}"></label>
+            </div>
+            {% if(o.labelPosition==='after' && 'label' in o.items[i]){ %}<span class="label">{%=o.items[i].label %}</span>{% } %}
+        </li>
+    {% } %}
+</ul>

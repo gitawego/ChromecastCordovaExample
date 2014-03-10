@@ -1,0 +1,57 @@
+.scroller {
+    /*height : 600px;
+    width : 1000px;*/
+    overflow: hidden;
+}
+
+.scroller .invisible{
+     height:0px !important;
+     overflow:hidden !important;
+     visibility:hidden !important;
+}
+
+.scroller.y {
+
+}
+
+.scroller .noTransition{
+/*    -webkit-transition:none !important;*/
+  @include transition(none !important);
+}
+
+
+.scroller.dataGrid.y > .viewPanel.initialized {
+    /*-webkit-transition: all 500ms cubic-bezier(0.345, 0.815, 0.200, 1);*/
+    -webkit-transition: all 200ms linear;
+    /*-webkit-transition-timing-function: steps(100,start/end);*/
+    -webkit-backface-visibility: hidden;
+    /*-webkit-perspective: 1000;*/
+}
+
+
+#gridScroll .gridScrollBar,
+#gridScroll2 .gridScrollBar2
+ {
+    background-color: white;
+    position: absolute;
+    border-radius: 5px;
+    border: 1px solid white;
+    
+    top: 0px;
+    right: 0px;
+    width: 8px;
+    
+}
+#gridScroll,
+#gridScroll2 {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.4);
+    /*visibility : hidden;*/
+    display: block;
+    border-radius: 5px;
+    border: 0px solid #000000;
+	
+	top: 5px;
+    right: 5px;
+    width: 8px;
+}

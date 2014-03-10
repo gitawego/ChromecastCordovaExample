@@ -1,0 +1,34 @@
+{{^inner}}
+<figure class="item {{^item}}empty{{/item}} itemIndex-{{{itemIndex}}}"
+        style="{{#parseStyle}}{{width}}{{/parseStyle}}
+                {{#parseStyle}}{{height}}{{/parseStyle}}"
+        data-item-index="{{{itemIndex}}}"
+>
+{{/inner}}
+{{#item}}
+    <div class="itemInner">
+        {{#item.thumbnail}}
+        <div class="pict">
+            {{#lazyLoadImages}}
+            <img class="dataImg imgNotLoaded" data-img="{{item.thumbnail}}"/>
+            {{/lazyLoadImages}}
+            {{^lazyLoadImages}}
+            <img src="{{item.thumbnail}}"/>
+            {{/lazyLoadImages}}
+        </div>
+        {{/item.thumbnail}}
+        <div class="info">
+            {{#item.title}}<fgcaption>{{item.title}}</fgcaption>{{/item.title}}
+            {{#item.author}}<div>Author : {{item.author}}</div>{{/item.author}}
+            {{#item.category}}<div>Category : {{item.category}}</div>{{/item.category}}
+        </div>
+
+    </div>
+
+{{/item}}
+{{^item}}
+    <div class="itemInner"></div>
+{{/item}}
+{{^inner}}
+</figure>
+{{/inner}}

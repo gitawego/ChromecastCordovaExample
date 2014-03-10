@@ -1,0 +1,126 @@
+@include keyframes(rotateFoldTop) {
+  to {
+    opacity: 0;
+    @include vendor-prefix(transform, translateY(-100%) rotateX(90deg));
+  }
+}
+
+@include keyframes(moveFromBottom) {
+  to {
+    @include vendor-prefix(transform, translateY(100%));
+  }
+}
+
+@include keyframes(moveFromBottomFade) {
+  from {
+    opacity: 0.3;
+    @include vendor-prefix(transform, translateY(100%));
+  }
+}
+
+@include keyframes(rotatePushTop) {
+  to {
+    opacity: 0;
+    @include vendor-prefix(transform, rotateX(-90deg));
+  }
+}
+
+@include keyframes(rotatePullBottom) {
+  from {
+    opacity: 0;
+    @include vendor-prefix(transform, rotateX(90deg));
+  }
+}
+
+/*delay*/
+.pt-page-delay100 {
+  @include vendor-prefix(animation-delay, .1s);
+}
+
+.pt-page-delay180 {
+  @include vendor-prefix(animation-delay, .180s);
+}
+
+.pt-page-delay200 {
+  @include vendor-prefix(animation-delay, .2s);
+
+}
+
+.pt-page-delay300 {
+  @include vendor-prefix(animation-delay, .3s);
+
+}
+
+.pt-page-delay400 {
+  @include vendor-prefix(animation-delay, .4s);
+
+}
+
+.pt-page-delay500 {
+  @include vendor-prefix(animation-delay,.5s);
+
+}
+
+.pt-page-delay700 {
+  @include vendor-prefix(animation-delay,.7s);
+
+}
+
+.pt-page-delay1000 {
+  @include vendor-prefix(animation-delay,1s);
+
+}
+
+/* css */
+.pt-page-rotateFoldTop {
+  @include vendor-prefix(transform-origin, 50% 100%);
+  @include vendor-prefix(animation, rotateFoldTop .7s both ease);
+}
+
+.pt-page-moveFromBottom {
+  @include vendor-prefix(animation, moveFromBottom .6s both ease);
+}
+
+.pt-page-moveFromBottomFade {
+  @include vendor-prefix(animation, moveFromBottomFade .7s both ease);
+
+}
+
+.pt-page-rotatePushTop {
+  @include vendor-prefix(transform-origin,50% 0%);
+  @include vendor-prefix(animation,rotatePushTop .8s both ease);
+
+}
+
+.pt-page-rotatePullBottom {
+  @include vendor-prefix(transform-origin,50% 100%);
+  @include vendor-prefix(animation,rotatePullBottom .5s both ease);
+}
+
+.pt-perspective {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  @include vendor-prefix(perspective, 1200px);
+
+}
+
+.pt-page {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  overflow: hidden;
+  @include vendor-prefix(backface-visibility, hidden);
+  @include vendor-prefix(transform, translate3d(0, 0, 0));
+  @include vendor-prefix(transform-style, preserve-3d);
+
+}
+
+.pt-page-current, .no-js .pt-page {
+  visibility: visible;
+  z-index: 1;
+}

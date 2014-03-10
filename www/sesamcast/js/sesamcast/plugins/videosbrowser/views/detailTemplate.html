@@ -1,0 +1,27 @@
+<div class="detailInner">
+    <h2>{{title}}</h2>
+    <div class="preview" style="background-image:url({{preview}})"></div>
+    <div class="info">
+        <div class="duration">{{duration}} min</div>
+        <div class="published">{{published}}</div>
+        <div class="author block"><span class="metadata-label">Author</span><span class="metadata-value">{{author}}</span></div>
+        <div class="category block"><span class="metadata-label">Category</span><span class="metadata-value">{{category}}</span></div>
+        <div class="viewCount block">
+            {{statistics.viewCount}} views
+        </div>
+        <div class="like block">
+            <img class="icon-watch-like" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="/><span>{{like.numLikes}}</span>
+            <img class="icon-watch-dislike" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="/><span>{{like.numDislikes}}</span>
+            <div data-rating-for="spectateurs" class="rating rated">
+                <span {{#rating1}}class="rated"{{/rating1}}></span>
+                <span {{#rating2}}class="rated"{{/rating2}}></span>
+                <span {{#rating3}}class="rated"{{/rating3}}></span>
+                <span {{#rating4}}class="rated"{{/rating4}}></span>
+                <span {{#rating5}}class="rated"{{/rating5}}></span>
+            </div>
+        </div>
+
+
+        <div class="description">{{description}}</div>
+    </div>
+</div>

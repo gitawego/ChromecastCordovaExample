@@ -1,0 +1,29 @@
+{
+  "name": "SesamTV Framework",
+  "author": "SesamTV",
+  "description": "Framework HTML5 dedicated to devices",
+  "version": "1.0.0",
+  "keywords": [
+    "framework",
+    "set-top box",
+    "html5",
+    "API"
+  ],
+  "ignore": [
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "requirejs": "*",
+    "requirejs-text": "*",
+    "requirejs-domready": "*",
+    "blueimp-tmpl": "*",
+    "hogan": "*",
+    "classList.js": "eligrey/classList.js#master",
+    "WeakMap": "gitawego/WeakMap#master",
+    "iscroll": "cubiq/iscroll"
+  },
+  "devDependencies": {
+    "jasmine": "~1.3.1"
+  }
+}

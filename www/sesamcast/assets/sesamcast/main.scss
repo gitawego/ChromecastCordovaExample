@@ -1,0 +1,299 @@
+$assetsPath: '..';
+$themePath: "../themes";
+$chromecastPath: ".";
+$chromecastIconPath: "./images/chromecast_icons";
+$playerIconPath: "./images/app_icons";
+/*
+  #v5
+  to dynamically include image path:
+      background:url('#{$assetsPath}/images/test.png');
+*/
+$vendorPrefix: (-webkit-,-moz-,'');
+@import "../common/css/util/_function";
+@import "../common/css/util/_normalize";
+@import "../common/css/util/_css3";
+@import "../common/css/util/_utilities";
+@import "../common/css/util/_animations";
+@import "../common/css/ui/_Box";
+@import "../common/css/ui/_Button";
+@import "../common/css/ui/_CheckBox";
+@import "../common/css/ui/_RadioButton";
+@import "../common/css/ui/_TextBox";
+@import "../common/css/ui/_imageContainer";
+@import "../common/css/ui/_menu";
+@import "../common/css/ui/_scrollAdapter";
+@import "../common/css/ui/_LazyLoadData";
+@import "../common/css/ui/_rating";
+@import "../themes/mainTheme/css/main";
+@import "./modules/chromecast";
+@import "./modules/player";
+@import "./modules/receiver";
+
+
+*, *:after, *:before {
+  @include vendor-prefix(box-sizing, border-box);
+
+}
+
+
+
+/*section {
+  position: relative;
+  left: 0;
+}*/
+html,body{
+  height:100%;
+}
+body {
+  background-color: #000;
+  color: #F1ECDF;
+  font-size:100%;
+  padding:0;
+  margin:0;
+}
+
+header {
+  min-height: 30px;
+  .cast-icon {
+    outline: none;
+    float: right;
+    margin-right: 10px;
+  }
+}
+
+.container {
+  height: auto;
+  position: relative;
+}
+
+#videosList {
+  top: 0;
+  width: auto;
+  max-height: 100%;
+  .castVideos {
+    max-height: 100%;
+  }
+  .scrollAdapter {
+    max-height: 85%;
+    /*max-width: 90%;*/
+    margin: auto;
+    .item {
+      display: block;
+      margin: 10px;
+      border-top: 1px solid #F1ECDF;
+      cursor: pointer;
+      min-height: 140px;
+      /* @include vendor-prefix(border-radius,6px); */
+      .itemInner {
+        width: 98%;
+        height: 96%;
+        margin: 1%;
+        .info {
+          display: inline-block;
+          vertical-align: top;
+        }
+        .pict {
+          display: inline-block;
+          background-color: #F1ECDF;
+          max-height: 200px;
+          overflow: hidden;
+          margin-right: 1em;
+          /*border-radius: 25px;*/
+          border: 1px solid #F1ECDF;
+          line-height: 200px;
+          vertical-align: middle;
+          img {
+            display: block;
+            position: relative;
+            width: 320px;
+            max-width: 100%;
+            height: 180px;
+            max-height: 100%;
+          }
+        }
+        .desc {
+          font-style: italic;
+          font-weight: 300;
+          color: #afaa9f;
+        }
+        fgcaption {
+          color: #F58723;
+          font-weight: bold;
+        }
+
+      }
+    }
+  }
+}
+
+.devicesWindow {
+
+  @include transition('all 0.5s ease-in');
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(255, 255, 255, 0.5);
+  z-index: -1;
+  opacity: 0;
+  &.show {
+    z-index: 100;
+    opacity: 1;
+  }
+  .deviceListContainer {
+    position: relative;
+    max-width: 95%;
+    background-color: black;
+    width: 50%;
+    height: auto;
+    max-height: 80%;
+    overflow: auto;
+    margin: 10% auto auto;
+    border: solid 1px #D4C9AD;
+    border-top-width: 2px;
+    border-radius: 10px 10px 5px 5px;
+    > header {
+      display: block;
+      position: relative;
+      text-align: center;
+      height: 30px;
+      color: #D4C9AD;
+      font-weight: bold;
+      background-color: #111;
+      border-bottom: solid 1px #F58723;
+      padding-top: .5em;
+      border-radius: 10px;
+    }
+    .deviceItem {
+      &.active:before {
+        content: '\2713';
+        color: green;
+        display: inline-block;
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+#videoController {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  bottom: 0px;
+  left: 0;
+  opacity: 0;
+  z-index: -1;
+
+  overflow: hidden;
+  /*@include transition('all 0.1s ease-in');*/
+  &.show {
+    z-index: 1;
+    opacity: 1;
+  }
+
+  .bigWindow, .toolbar {
+    position: absolute;
+    /*@include transition('opacity 0.2s ease-in');*/
+    top: 0;
+    height: 100%;
+    width: 100%;
+
+  }
+  .bigWindow {
+    z-index: 2;
+    opacity: 1;
+    width: 100%;
+    top: 0;
+    background: rgba(0, 0, 0, 0.9);
+  }
+  .toolbar {
+    text-align: left;
+    z-index: 1;
+    opacity: 0;
+    background-color: #F58723;
+    .title {
+      vertical-align: middle;
+      display: inline-block;
+      max-width: 50%;
+      margin-left: 5px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    img {
+      border: 1px solid #F1ECDF;
+      max-height: 80%;
+      max-width: 80%;
+      margin: 1% auto auto 2%;
+      vertical-align: middle;
+    }
+  }
+  .detail {
+    text-align: center;
+    img {
+      display: block;
+      position: relative;
+      height: 180px;
+      max-height: 20%;
+      margin: 10px auto;
+      border-radius: 6px;
+      border: 1px solid #F1ECDF;
+    }
+    .title {
+      font-size: 1em;
+      display: inline-block;
+      vertical-align: top;
+      font-weight: bolder;
+      max-width: 86%;
+      text-align: center;
+      overflow: hidden;
+      /*text-overflow: ellipsis;
+      white-space: nowrap;*/
+      margin: 5px auto;
+    }
+  }
+
+  &.footer {
+    min-height: 30px;
+    .bigWindow {
+      z-index: 1;
+      opacity: 0;
+    }
+    .toolbar {
+      z-index: 2;
+      opacity: 1;
+    }
+  }
+}
+
+#welcome {
+  /*@include transition('all 1s ease-in');*/
+  text-align: center;
+  /*position: fixed;*/
+  /*top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;*/
+  background-color: #232323;
+  /*opacity: 1;*/
+  .castLogo{
+    background: url(#{$chromecastPath}/images/logo-chromecast.png) no-repeat center;
+    background-size: contain;
+    height: 200px;
+    max-height:30%;
+    width:100%;
+    margin-top:5%;
+  }
+  .title {
+    background: url(#{$chromecastPath}/images/sesamtv_logo.png) no-repeat;
+    padding-left: 75px;
+    padding-top: 16px;
+    min-height: 54px;
+    font-size: 120%;
+    display: inline-block;
+    margin-top: 10%;
+    max-width:85%;
+  }
+}
+
+@include receiver();
